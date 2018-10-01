@@ -57,3 +57,26 @@ export class CatsController {
 ```
 
 Note that `WinstonModule` is a global module, it will be available in all you feature modules.
+
+## Async configuration
+
+Maybe you need to asynchronously pass your module options, for example when you need a configuration service. In such case, use the `forRootAsync()` method. Just return an options object from the `useFactory` method:
+
+```typescript
+import { Module } from '@nestjs/common';
+import { WinstonModule } from 'nest-winston';
+
+@Module({
+  imports: [
+    WinstonModule.forRootAsync({
+      useFactory: () => ({
+        // options
+      }),
+      inject: [],
+    }),
+  ],
+})
+export class ApplicationModule { }
+```
+
+The factory might be async and is able to inject dependencies through the `inject` option.
