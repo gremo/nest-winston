@@ -1,12 +1,11 @@
-import { createLogger, Logger, LoggerOptions } from 'winston';
+import { Provider } from '@nestjs/common';
+import { createLogger, LoggerOptions } from 'winston';
 
-export function createWinstonProviders(options: LoggerOptions) {
+export function createWinstonProviders(options: LoggerOptions): Provider[] {
   return [
     {
       provide: 'winston',
-      useFactory: () => {
-        return createLogger(options) as Logger;
-      }
+      useFactory: () => createLogger(options),
     }
   ];
 }
