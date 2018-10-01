@@ -1,12 +1,12 @@
 import { DynamicModule, Global, Module } from '@nestjs/common';
-import { LoggerOptions } from 'winston';
 
+import { WinstonModuleOptions } from './winston.interfaces';
 import { createWinstonProviders } from './winston.providers';
 
 @Global()
 @Module({})
 export class WinstonModule {
-  static forRoot(options: LoggerOptions): DynamicModule {
+  static forRoot(options: WinstonModuleOptions): DynamicModule {
     const providers = createWinstonProviders(options);
 
     return {
