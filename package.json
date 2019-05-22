@@ -1,16 +1,16 @@
 {
   "name": "nest-winston",
   "version": "1.0.2",
+  "license": "MIT",
   "description": "A Nest module wrapper for winston",
   "keywords": [
     "nestjs",
     "winston",
     "logger"
   ],
+  "author": "Marco Polichetti <gremo1982@gmail.com>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "author": "Marco Polichetti",
-  "license": "MIT",
   "scripts": {
     "lint": "tslint --project tsconfig.json",
     "prebuild": "rimraf dist",
@@ -26,5 +26,13 @@
   "peerDependencies": {
     "@nestjs/common": "^5.0.0",
     "winston": "^3.0.0"
+  },
+  "homepage": "https://github.com/gremo/nest-winston#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gremo/nest-winston.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gremo/nest-winston/issues"
   }
 }
