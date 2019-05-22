@@ -3,7 +3,7 @@
 </p>
 
  <p align="center">A Nest module wrapper for winston logger.</p>
- 
+
 <p align="center">
 <a href="https://www.npmjs.com/package/nest-winston"><img src="https://img.shields.io/npm/v/nest-winston.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/package/nest-winstong"><img src="https://img.shields.io/npm/l/nest-winston.svg" alt="Package License" /></a>
@@ -18,12 +18,6 @@ A [Nest](https://github.com/nestjs/nest) module wrapper for [winston](https://gi
 
 ```bash
 $ npm i winston nest-winston --save
-```
-
-If you are using Yarn:
-
-```bash
-$ yarn add winston nest-winston
 ```
 
 ## Quick Start
