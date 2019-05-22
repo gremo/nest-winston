@@ -11,6 +11,9 @@
   "author": "Marco Polichetti <gremo1982@gmail.com>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "lint": "tslint --project tsconfig.json",
     "prebuild": "rimraf dist",
