@@ -13,7 +13,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "tslint --project tsconfig.json",
-    "build": "rimraf dist && tsc -p tsconfig.json"
+    "prebuild": "rimraf dist",
+    "build": "tsc"
   },
   "devDependencies": {
     "@nestjs/common": "^5.0.0",
