@@ -20,8 +20,11 @@
     "build": "tsc"
   },
   "devDependencies": {
-    "@nestjs/common": "^5.0.0",
+    "@nestjs/common": "^5.3.9",
+    "@nestjs/core": "^5.3.9",
+    "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
+    "rxjs": "^6.0.0",
     "tslint": "^5.16.0",
     "typescript": "^2.8.0",
     "winston": "^3.0.0"
