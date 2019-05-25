@@ -20,6 +20,7 @@ export class WinstonModule {
 
     return {
       module: WinstonModule,
+      imports: options.imports,
       providers: providers,
       exports: providers,
     };

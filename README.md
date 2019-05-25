@@ -55,7 +55,7 @@ Note that `WinstonModule` is a global module, it will be available in all you fe
 
 ## Async configuration
 
-> **Caveats**: because the way Nest works, you can't inject dependencies exported from the root module itself (using `exports`) or any other feature module that **isn't global**. In other words, if you use `forRootAsync()` and need to inject a service, that service must be exported from a [global module](https://docs.nestjs.com/modules#global-modules).
+> **Caveats**: because the way Nest works, you can't inject dependencies exported from the root module itself (using `exports`). If you use `forRootAsync()` and need to inject a service, that service must be either imported using the `imports` options or exported from a [global module](https://docs.nestjs.com/modules#global-modules).
 
 Maybe you need to asynchronously pass your module options, for example when you need a configuration service. In such case, use the `forRootAsync()` method, returning an options object from the `useFactory` method:
 
@@ -70,11 +70,11 @@ import * as winston from 'winston';
       useFactory: () => ({
         // options
       }),
-      inject: [],
+      inject: [], // inject dependencies
     }),
   ],
 })
 export class AppModule {}
 ```
 
-The factory might be async and is able to inject dependencies through the `inject` option.
+The factory might be async, can inject dependencies with `inject` option and import other modules using the `imports` option.
