@@ -17,16 +17,17 @@ A [Nest](https://github.com/nestjs/nest) module wrapper for [winston](https://gi
 ## Installation
 
 ```bash
-$ npm i winston nest-winston --save
+$ npm install --save nest-winston winston
 ```
 
 ## Quick Start
 
-Import the `WinstonModule` into the root `ApplicationModule`:
+Import `WinstonModule` into the root `AppModule` and use the `forRoot()` method to configure it. This method accepts the same options object as [`createLogger()`](https://github.com/winstonjs/winston#usage) function from the winston package:
 
 ```typescript
 import { Module } from '@nestjs/common';
 import { WinstonModule } from 'nest-winston';
+import * as winston from 'winston';
 
 @Module({
   imports: [
@@ -35,10 +36,10 @@ import { WinstonModule } from 'nest-winston';
     }),
   ],
 })
-export class ApplicationModule { }
+export class AppModule {}
 ```
 
-The `forRoot()` method accepts the same options object as `createLogger()` function from the winston package. Afterward, winston instance will be available to inject across entire project using the `winston` injection token:
+Afterward, the winston instance will be available to inject across entire project using the `winston` injection token:
 
 ```typescript
 import { Controller, Inject } from '@nestjs/common';
@@ -54,11 +55,14 @@ Note that `WinstonModule` is a global module, it will be available in all you fe
 
 ## Async configuration
 
-Maybe you need to asynchronously pass your module options, for example when you need a configuration service. In such case, use the `forRootAsync()` method. Just return an options object from the `useFactory` method:
+> **Caveats**: because the way Nest works, you can't inject dependencies exported from the root module itself (using `exports`) or any other feature module that **isn't global**. In other words, if you use `forRootAsync()` and need to inject a service, that service must be exported from a [global module](https://docs.nestjs.com/modules#global-modules).
+
+Maybe you need to asynchronously pass your module options, for example when you need a configuration service. In such case, use the `forRootAsync()` method, returning an options object from the `useFactory` method:
 
 ```typescript
 import { Module } from '@nestjs/common';
 import { WinstonModule } from 'nest-winston';
+import * as winston from 'winston';
 
 @Module({
   imports: [
@@ -70,7 +74,7 @@ import { WinstonModule } from 'nest-winston';
     }),
   ],
 })
-export class ApplicationModule { }
+export class AppModule {}
 ```
 
 The factory might be async and is able to inject dependencies through the `inject` option.
