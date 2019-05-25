@@ -1,8 +1,6 @@
 {
   "files.exclude": {
-    "**/.nyc_output": true,
     "**/.vscode": true,
-    "**/coverage": true,
     "**/dist": true,
     "**/node_modules": true
   }
