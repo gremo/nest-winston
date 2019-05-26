@@ -3,5 +3,6 @@
     "**/.vscode": true,
     "**/dist": true,
     "**/node_modules": true
-  }
+  },
+  "javascript.implicitProjectConfig.experimentalDecorators": true
 }
