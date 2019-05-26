@@ -1,23 +1,23 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com"><img src="https://nestjs.com/img/logo_text.svg" alt="Nest Logo" width="320" /></a>
 </p>
-
- <p align="center">A Nest module wrapper for winston logger.</p>
 
 <p align="center">
-<a href="https://www.npmjs.com/package/nest-winston"><img src="https://img.shields.io/npm/v/nest-winston.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/package/nest-winstong"><img src="https://img.shields.io/npm/l/nest-winston.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/package/nest-winston"><img src="https://img.shields.io/npm/dm/nest-winston.svg" alt="NPM Downloads" /></a>
+  A <a href="https://github.com/nestjs/nest">Nest</a> module wrapper for <a href="https://github.com/winstonjs/winston">winston</a> logger.
 </p>
 
-## Description
-
-A [Nest](https://github.com/nestjs/nest) module wrapper for [winston](https://github.com/winstonjs/winston) logger.
+<p align="center">
+  <a href="https://www.npmjs.com/package/nest-winston"><img src="https://img.shields.io/npm/v/nest-winston.svg" alt="NPM Version" /></a>
+  <a href="https://www.npmjs.com/package/nest-winston"><img src="https://img.shields.io/npm/dw/nest-winston.svg" alt="NPM Downloads" /></a>
+  <a href="https://github.com/gremo/nest-winston/issues"><img src="https://img.shields.io/github/issues/gremo/nest-winston.svg" alt="GitHub issues" /></a>
+  <a href="https://david-dm.org/gremo/nest-winston"><img alt="David" src="https://img.shields.io/david/gremo/nest-winston.svg" alt="dependencies Status"></a>
+  <a href="https://david-dm.org/gremo/nest-winston?type=dev"><img src="https://david-dm.org/gremo/nest-winston/dev-status.svg" alt="devDependencies status" /></a>
+</p>
 
 ## Installation
 
 ```bash
-$ npm install --save nest-winston winston
+npm install --save nest-winston winston
 ```
 
 ## Quick Start
@@ -70,7 +70,7 @@ import * as winston from 'winston';
       useFactory: () => ({
         // options
       }),
-      inject: [], // inject dependencies
+      inject: [],
     }),
   ],
 })
