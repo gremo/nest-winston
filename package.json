@@ -21,21 +21,21 @@
     "build": "tsc"
   },
   "devDependencies": {
-    "@nestjs/common": "^5.3.9",
-    "@nestjs/core": "^5.3.9",
-    "@nestjs/testing": "^5.3.15",
+    "@nestjs/common": "^5.7.4",
+    "@nestjs/core": "^5.7.4",
+    "@nestjs/testing": "^5.7.4",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
-    "reflect-metadata": "^0.1.12",
-    "rimraf": "^2.6.2",
-    "rxjs": "^6.0.0",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^2.6.3",
+    "rxjs": "^6.5.2",
     "source-map-support": "^0.5.12",
-    "ts-node": "^8.1.0",
+    "ts-node": "^8.2.0",
     "tslint": "^5.16.0",
-    "typescript": "^2.8.0",
-    "winston": "^3.0.0"
+    "typescript": "^3.4.5",
+    "winston": "^3.2.1"
   },
   "peerDependencies": {
     "@nestjs/common": "^5.0.0",
