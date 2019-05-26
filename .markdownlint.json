@@ -1,0 +1,6 @@
+{
+  "default": true,
+  "first-line-heading": false,
+  "line-length": false,
+  "no-inline-html": false
+}
