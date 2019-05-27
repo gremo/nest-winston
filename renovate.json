@@ -5,10 +5,6 @@
   ],
   "packageRules": [
     {
-      "depTypeList": ["devDependencies"],
-      "automerge": true
-    },
-    {
       "packagePatterns": ["^@nestjs"],
       "excludePackagePatterns": "^@nestjs"
     }
