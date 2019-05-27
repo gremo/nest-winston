@@ -6,7 +6,7 @@
   "packageRules": [
     {
       "packagePatterns": ["^@nestjs"],
-      "excludePackagePatterns": "^@nestjs"
+      "enabled": false
     }
   ]
 }
