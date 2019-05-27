@@ -1,5 +1,16 @@
 {
   "extends": [
-    "config:base"
+    "config:base",
+    ":automergePatch"
+  ],
+  "packageRules": [
+    {
+      "depTypeList": ["devDependencies"],
+      "automerge": true
+    },
+    {
+      "packagePatterns": ["^@nestjs"],
+      "rangeStrategy": "^@nestjs"
+    }
   ]
 }
