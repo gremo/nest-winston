@@ -9,6 +9,10 @@
       "enabled": false
     },
     {
+      "depTypeList": ["devDependencies"],
+      "rangeStrategy": "replace"
+    },
+    {
       "depTypeList": ["peerDependencies"],
       "enabled": false
     }
