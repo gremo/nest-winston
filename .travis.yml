@@ -6,6 +6,11 @@ cache:
   directories:
   - "$HOME/.npm"
 
+matrix:
+  include:
+    - env: NEST_VERSION=^5
+    - env: NEST_VERSION=
+
 script:
-  - npm run test
+  - npm test
   - npm run build
