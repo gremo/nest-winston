@@ -1,20 +1,14 @@
 {
   "extends": [
     "config:base",
-    ":automergePatch"
+    ":disablePeerDependencies"
   ],
   "packageRules": [
     {
-      "packagePatterns": ["^@nestjs"],
-      "enabled": false
-    },
-    {
-      "depTypeList": ["devDependencies"],
-      "rangeStrategy": "replace"
-    },
-    {
-      "depTypeList": ["peerDependencies"],
-      "enabled": false
+      "depTypeList": [
+        "devDependencies"
+      ],
+      "rangeStrategy": "bump"
     }
   ]
 }
