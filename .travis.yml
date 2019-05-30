@@ -6,6 +6,16 @@ cache:
   directories:
   - "$HOME/.npm"
 
+matrix:
+  include:
+    - env: NEST_VERSION=^5
+    - env: NEST_VERSION=
+
+before_script:
+  - if [[ $NEST_VERSION ]]; then
+      npm install @nestjs/common@$NEST_VERSION @nestjs/core@$NEST_VERSION @nestjs/testing@$NEST_VERSION;
+    fi
+
 script:
-  - npm run test
+  - npm test
   - npm run build
