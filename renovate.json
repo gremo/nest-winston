@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "config:base",
+    ":disablePeerDependencies"
+  ],
+  "packageRules": [
+    {
+      "depTypeList": [
+        "devDependencies"
+      ],
+      "rangeStrategy": "bump"
+    }
+  ]
+}
