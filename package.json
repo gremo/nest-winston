@@ -35,7 +35,7 @@
     "source-map-support": "^0.5.12",
     "ts-node": "^8.2.0",
     "tslint": "^5.17.0",
-    "typescript": "^3.5.1",
+    "typescript": "^3.5.2",
     "winston": "^3.2.1"
   },
   "peerDependencies": {
