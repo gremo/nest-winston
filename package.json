@@ -21,10 +21,10 @@
     "build": "tsc"
   },
   "devDependencies": {
-    "@nestjs/common": "^6.4.0",
-    "@nestjs/core": "^6.4.0",
-    "@nestjs/platform-express": "^6.4.0",
-    "@nestjs/testing": "^6.4.0",
+    "@nestjs/common": "^6.4.1",
+    "@nestjs/core": "^6.4.1",
+    "@nestjs/platform-express": "^6.4.1",
+    "@nestjs/testing": "^6.4.1",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.7",
     "chai": "^4.2.0",
