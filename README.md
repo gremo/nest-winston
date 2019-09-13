@@ -79,3 +79,15 @@ export class AppModule {}
 ```
 
 The factory might be async, can inject dependencies with `inject` option and import other modules using the `imports` option.
+
+## Use as the main Nest logger
+
+If you want to use winston logger across the whole app, including bootstrapping and error handling, use the following:
+
+```typescript
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useLogger(app.get('NestWinston'));
+}
+bootstrap();
+```

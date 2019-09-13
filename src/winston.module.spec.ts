@@ -3,7 +3,7 @@
 import { Injectable, Module } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { expect } from 'chai';
-import { WINSTON_MODULE_PROVIDER } from './winston.constants';
+import { WINSTON_MODULE_NEST_PROVIDER, WINSTON_MODULE_PROVIDER } from './winston.constants';
 import { WinstonModule } from './winston.module';
 
 describe('Winston module', function() {
@@ -15,6 +15,7 @@ describe('Winston module', function() {
     }).compile();
 
     expect(rootModule.get(WINSTON_MODULE_PROVIDER)).to.be.an('object');
+    expect(rootModule.get(WINSTON_MODULE_NEST_PROVIDER)).to.be.an('object');
   });
 
   it('boots successfully asynchronously', async function() {
@@ -43,5 +44,6 @@ describe('Winston module', function() {
     await app.init();
 
     expect(rootModule.get(WINSTON_MODULE_PROVIDER)).to.be.an('object');
+    expect(rootModule.get(WINSTON_MODULE_NEST_PROVIDER)).to.be.an('object');
   });
 });
