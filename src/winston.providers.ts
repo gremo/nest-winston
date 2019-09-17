@@ -30,6 +30,7 @@ class WinstonLogger implements LoggerService {
   }
 }
 
+
 export function createWinstonProviders(
   loggerOpts: WinstonModuleOptions): Provider[] {
   return [
