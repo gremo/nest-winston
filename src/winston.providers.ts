@@ -44,7 +44,7 @@ export function createWinstonProviders(
         return new WinstonLogger(logger);
       },
       inject: [WINSTON_MODULE_PROVIDER]
-    }
+    },
   ];
 }
 
@@ -66,7 +66,7 @@ export function createWinstonAsyncProviders(
       useFactory: (logger: Logger) => {
         return new WinstonLogger(logger);
       },
-      inject: [WINSTON_MODULE_PROVIDER]
-    }
+      inject: [WINSTON_MODULE_PROVIDER],
+    },
   ];
 }
