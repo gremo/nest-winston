@@ -93,3 +93,29 @@ async function bootstrap() {
 }
 bootstrap();
 ```
+
+The module also provides a custom Nest-like special formatter for console transports:
+
+```typescript
+import { Module } from '@nestjs/common';
+import { utilities as nestWinstonModuleUtilities, WinstonModule } from 'nest-winston';
+import * as winston from 'winston';
+
+@Module({
+  imports: [
+    WinstonModule.forRoot({
+      transports: [
+        new winston.transports.Console({
+          format: winston.format.combine(
+            winston.format.timestamp(),
+            nestWinstonModuleUtilities.format.nestLike(),
+          ),
+        }),
+        // other transports...
+      ],
+      // other options
+    }),
+  ],
+})
+export class AppModule {}
+```

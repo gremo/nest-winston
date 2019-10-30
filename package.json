@@ -20,6 +20,9 @@
     "prebuild": "rimraf dist",
     "build": "tsc"
   },
+  "dependencies": {
+    "colors": "^1.4.0"
+  },
   "devDependencies": {
     "@nestjs/common": "^6.8.5",
     "@nestjs/core": "^6.8.5",
