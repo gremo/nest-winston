@@ -85,9 +85,11 @@ The factory might be async, can inject dependencies with `inject` option and imp
 If you want to use winston logger across the whole app, including bootstrapping and error handling, use the following:
 
 ```typescript
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useLogger(app.get('NestWinston'));
+  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
 }
 bootstrap();
 ```
