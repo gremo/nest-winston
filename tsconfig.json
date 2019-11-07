@@ -14,6 +14,7 @@
     "experimentalDecorators": true
   },
   "exclude": [
+    "./dist",
     "**/*.spec.ts"
   ]
 }
