@@ -27,6 +27,10 @@ class WinstonLogger implements LoggerService {
   }
 }
 
+export function createNestWinstonLogger(loggerOpts: WinstonModuleOptions): WinstonLogger {
+  return new WinstonLogger(createLogger(loggerOpts));
+}
+
 export function createWinstonProviders(loggerOpts: WinstonModuleOptions): Provider[] {
   return [
     {
