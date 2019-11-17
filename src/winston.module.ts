@@ -23,6 +23,6 @@ export class WinstonModule {
       imports: options.imports,
       providers: providers,
       exports: providers,
-    };
+    } as DynamicModule;
   }
 }

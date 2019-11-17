@@ -80,6 +80,13 @@ export class AppModule {}
 
 The factory might be async, can inject dependencies with `inject` option and import other modules using the `imports` option.
 
+Alternatively, you can use the `useClass` syntax:
+```
+WinstonModule.forRootAsync({
+  useClass: WinstonConfigService,
+})
+```
+
 ## Use as the main Nest logger
 
 If you want to use winston logger across the whole app, including bootstrapping and error handling, use the following:
