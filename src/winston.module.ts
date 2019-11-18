@@ -1,6 +1,6 @@
-import { DynamicModule, Global, Module } from '@nestjs/common';
+import { DynamicModule, Global, LoggerService, Module } from '@nestjs/common';
 import { WinstonModuleAsyncOptions, WinstonModuleOptions } from './winston.interfaces';
-import { createWinstonAsyncProviders, createWinstonProviders } from './winston.providers';
+import { createNestWinstonLogger, createWinstonAsyncProviders, createWinstonProviders } from './winston.providers';
 
 @Global()
 @Module({})
@@ -24,5 +24,9 @@ export class WinstonModule {
       providers: providers,
       exports: providers,
     };
+  }
+
+  public static createLogger(options: WinstonModuleOptions): LoggerService {
+    return createNestWinstonLogger(options);
   }
 }
