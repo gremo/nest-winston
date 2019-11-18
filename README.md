@@ -120,11 +120,9 @@ import * as winston from 'winston';
 export class AppModule {}
 ```
 
-## Use WinstonLogger as bootstrap logger
-
 When creating loggers from `WinstonModule`, Nest has to bootstrap the application first. This means instantiating all the modules and the providers, injecting dependencies, etc. During this "bootstrapping" process, instances of `WinstonLogger` are not available which means Nest falls back to an internal logger.
 
-In order to have a winston logger used during bootstrapping, the logger has to created outside of the application lifecycle and passed to `NestFactory.create` as [an option](https://docs.nestjs.com/techniques/logger) 
+In order to have a winston logger used during bootstrapping, the logger has to created outside of the application lifecycle and passed to `NestFactory.create` as [an option](https://docs.nestjs.com/techniques/logger):
 
 ```typescript
 import { WinstonModule } from 'nest-winston';
@@ -132,11 +130,11 @@ import { WinstonModule } from 'nest-winston';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: WinstonModule.createLogger({
-      // same options here that would go into WinstonModule.forRoot()
-    }) 
+      // options (same as WinstonModule.forRoot() options)
+    })
   });
 }
 bootstrap();
 ```
 
-The bootstrapping logger will be used unless another logger is set ie: `app.useLogger()` is called.
+The bootstrapping logger will be used unless another logger is set (i.e. when `app.useLogger()` is called).
