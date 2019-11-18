@@ -81,11 +81,14 @@ export class AppModule {}
 The factory might be async, can inject dependencies with `inject` option and import other modules using the `imports` option.
 
 Alternatively, you can use the `useClass` syntax:
-```
+
+```typescript
 WinstonModule.forRootAsync({
   useClass: WinstonConfigService,
 })
 ```
+
+With the above code, Nest will create a new instance of `WinstonConfigService` and its method `createWinstonModuleOptions` will be called in order to provide the module options.
 
 ## Use as the main Nest logger
 
