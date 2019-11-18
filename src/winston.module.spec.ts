@@ -4,8 +4,8 @@ import { Injectable, Module } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { expect } from 'chai';
 import { WINSTON_MODULE_NEST_PROVIDER, WINSTON_MODULE_PROVIDER } from './winston.constants';
+import { WinstonModuleOptions, WinstonModuleOptionsFactory } from './winston.interfaces';
 import { WinstonModule } from './winston.module';
-import {WinstonModuleOptions, WinstonModuleOptionsFactory} from './winston.interfaces';
 
 describe('Winston module', function() {
   it('boots successfully', async function() {
@@ -53,7 +53,7 @@ describe('Winston module', function() {
     class ConfigService implements WinstonModuleOptionsFactory {
       private loggerOptions = {};
 
-      createWinstonModuleOptions(): WinstonModuleOptions {
+      public createWinstonModuleOptions(): WinstonModuleOptions {
         return this.loggerOptions;
       }
     }
