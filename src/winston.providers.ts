@@ -1,7 +1,7 @@
-import { LoggerService, Provider } from '@nestjs/common';
+import {LoggerService, Provider, Type} from '@nestjs/common';
 import { createLogger, Logger, LoggerOptions } from 'winston';
 import { WINSTON_MODULE_NEST_PROVIDER, WINSTON_MODULE_OPTIONS, WINSTON_MODULE_PROVIDER } from './winston.constants';
-import { WinstonModuleAsyncOptions, WinstonModuleOptions } from './winston.interfaces';
+import {WinstonModuleAsyncOptions, WinstonModuleOptions, WinstonModuleOptionsFactory} from './winston.interfaces';
 
 class WinstonLogger implements LoggerService {
   constructor(private readonly logger: Logger) { }
@@ -48,12 +48,7 @@ export function createWinstonProviders(loggerOpts: WinstonModuleOptions): Provid
 }
 
 export function createWinstonAsyncProviders(options: WinstonModuleAsyncOptions): Provider[] {
-  return [
-    {
-      provide: WINSTON_MODULE_OPTIONS,
-      useFactory: options.useFactory,
-      inject: options.inject || [],
-    },
+  const providers: Provider[] = [
     {
       provide: WINSTON_MODULE_PROVIDER,
       useFactory: (loggerOpts: LoggerOptions) => createLogger(loggerOpts),
@@ -67,4 +62,32 @@ export function createWinstonAsyncProviders(options: WinstonModuleAsyncOptions):
       inject: [WINSTON_MODULE_PROVIDER],
     },
   ];
+
+  if (options.useClass) {
+    const useClass = options.useClass as Type<WinstonModuleOptionsFactory>;
+    providers.push(...[
+      {
+        provide: WINSTON_MODULE_OPTIONS,
+        useFactory: async (optionsFactory: WinstonModuleOptionsFactory) =>
+          await optionsFactory.createWinstonModuleOptions(),
+        inject: [useClass],
+      },
+      {
+        provide: useClass,
+        useClass,
+      }
+    ]);
+  }
+
+  if (options.useFactory) {
+    providers.push(
+      {
+        provide: WINSTON_MODULE_OPTIONS,
+        useFactory: options.useFactory,
+        inject: options.inject || [],
+      },
+    );
+  }
+
+  return providers;
 }

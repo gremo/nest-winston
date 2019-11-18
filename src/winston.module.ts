@@ -23,7 +23,7 @@ export class WinstonModule {
       imports: options.imports,
       providers: providers,
       exports: providers,
-    };
+    } as DynamicModule;
   }
 
   public static createLogger(options: WinstonModuleOptions): LoggerService {
