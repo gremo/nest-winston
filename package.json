@@ -24,10 +24,10 @@
     "colors": "^1.4.0"
   },
   "devDependencies": {
-    "@nestjs/common": "^6.10.1",
-    "@nestjs/core": "^6.10.1",
-    "@nestjs/platform-express": "^6.10.1",
-    "@nestjs/testing": "^6.10.1",
+    "@nestjs/common": "^6.10.2",
+    "@nestjs/core": "^6.10.2",
+    "@nestjs/platform-express": "^6.10.2",
+    "@nestjs/testing": "^6.10.2",
     "@types/chai": "^4.2.5",
     "@types/mocha": "^5.2.7",
     "chai": "^4.2.0",
