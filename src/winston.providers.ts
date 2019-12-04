@@ -3,7 +3,7 @@ import { createLogger, Logger, LoggerOptions } from 'winston';
 import { WINSTON_MODULE_NEST_PROVIDER, WINSTON_MODULE_OPTIONS, WINSTON_MODULE_PROVIDER } from './winston.constants';
 import { WinstonModuleAsyncOptions, WinstonModuleOptions, WinstonModuleOptionsFactory } from './winston.interfaces';
 
-class WinstonLogger implements LoggerService {
+export class WinstonLogger implements LoggerService {
   constructor(private readonly logger: Logger) { }
 
   public log(message: any, context?: string) {
