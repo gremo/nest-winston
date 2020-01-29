@@ -29,7 +29,7 @@
     "@nestjs/platform-express": "^6.11.4",
     "@nestjs/testing": "^6.11.4",
     "@types/chai": "^4.2.8",
-    "@types/mocha": "^5.2.7",
+    "@types/mocha": "^7.0.1",
     "chai": "^4.2.0",
     "mocha": "^7.0.1",
     "reflect-metadata": "^0.1.13",
