@@ -28,7 +28,7 @@
     "@nestjs/core": "^6.11.8",
     "@nestjs/platform-express": "^6.11.8",
     "@nestjs/testing": "^6.11.8",
-    "@types/chai": "^4.2.9",
+    "@types/chai": "^4.2.10",
     "@types/mocha": "^7.0.1",
     "chai": "^4.2.0",
     "mocha": "^7.1.0",
