@@ -42,7 +42,7 @@
     "winston": "^3.2.1"
   },
   "peerDependencies": {
-    "@nestjs/common": "^5.0.0 || ^6.6.0",
+    "@nestjs/common": "^5.0.0 || ^6.6.0 || ^7.0.0",
     "winston": "^3.0.0"
   },
   "homepage": "https://github.com/gremo/nest-winston#readme",
