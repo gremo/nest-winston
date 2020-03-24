@@ -44,11 +44,12 @@ Afterward, the winston instance will be available to inject across entire projec
 
 ```typescript
 import { Controller, Inject } from '@nestjs/common';
+import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
 
 @Controller('cats')
 export class CatsController {
-  constructor(@Inject('winston') private readonly logger: Logger) { }
+  constructor(@Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger) { }
 }
 ```
 
