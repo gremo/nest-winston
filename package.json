@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "lint": "tslint --project tsconfig.json",
-    "test": "mocha --opts .mocharc",
+    "test": "mocha --config .mocharc.json",
     "prebuild": "rimraf dist",
     "build": "tsc"
   },

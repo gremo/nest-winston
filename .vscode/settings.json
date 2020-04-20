@@ -5,9 +5,7 @@
     "**/node_modules": true
   },
   "javascript.implicitProjectConfig.experimentalDecorators": true,
-  "mochaExplorer.files": "src/**/*.spec.ts",
   "mochaExplorer.mochaPath": "node_modules/mocha",
-  "mochaExplorer.optsFile": ".mocharc",
   "testExplorer.codeLens": false,
   "tsimporter.noStatusBar": true
 }
