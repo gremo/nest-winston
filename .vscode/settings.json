@@ -6,6 +6,5 @@
   },
   "javascript.implicitProjectConfig.experimentalDecorators": true,
   "mochaExplorer.mochaPath": "node_modules/mocha",
-  "testExplorer.codeLens": false,
-  "tsimporter.noStatusBar": true
+  "testExplorer.codeLens": false
 }
