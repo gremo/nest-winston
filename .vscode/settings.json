@@ -5,6 +5,5 @@
     "**/node_modules": true
   },
   "javascript.implicitProjectConfig.experimentalDecorators": true,
-  "mochaExplorer.mochaPath": "node_modules/mocha",
   "testExplorer.codeLens": false
 }
