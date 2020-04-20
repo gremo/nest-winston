@@ -1,4 +1,5 @@
 import { green, yellow } from 'colors/safe';
+import safeStringify from 'fast-safe-stringify';
 import { format } from 'winston';
 
 const nestLikeConsoleFormat = () => format.printf(({ context, level, timestamp, message, ...meta }) => {
@@ -7,7 +8,7 @@ const nestLikeConsoleFormat = () => format.printf(({ context, level, timestamp, 
          ('undefined' !== typeof timestamp ? `${new Date(timestamp).toLocaleString()} ` : '') +
          ('undefined' !== typeof context ? `${yellow('[' + context + ']')} ` : '') +
          `${green(message)} - ` +
-         `${JSON.stringify(meta)}`;
+         `${safeStringify(meta)}`;
 });
 
 export const utilities = {
