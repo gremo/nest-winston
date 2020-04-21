@@ -149,3 +149,13 @@ bootstrap();
 ```
 
 The bootstrapping logger will be used unless another logger is set (i.e. when `app.useLogger()` is called).
+
+## Contributing
+
+New features and bugfixes are always welcome! In order to contribute to this project, follow a few easy steps:
+
+1. [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) this repository, clone it on your machine and run `npm install`
+2. Open your local repository with [Visual Studio code](https://code.visualstudio.com/) and install all the suggested extensions
+3. Create a branch `my-awesome-feature` and commit to it
+4. Run `npm run lint`, `npm run test` and `npm run build` and verify that they complete without errors
+5. Push `my-awesome-feature` branch to GitHub and open a [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)
