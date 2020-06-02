@@ -93,7 +93,7 @@ With the above code, Nest will create a new instance of `WinstonConfigService` a
 
 ## Use as the main Nest logger
 
-If you want to use winston logger across the whole app use the following:
+Apart from application logging, this module also provides the `WinstonLogger` custom implementation, for use with the Nest logging system. Example `main.ts` file:
 
 ```typescript
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
@@ -104,6 +104,48 @@ async function bootstrap() {
 }
 bootstrap();
 ```
+
+Here the `get()` method on the NestApplication instance is used to retrieve the singleton instance of `WinstonLogger` class, which is still configured using either `WinstonModule.forRoot` or `WinstonModule.forRootAsync` methods.
+
+When using this technique, you can inject the logger either using the `WINSTON_MODULE_PROVIDER` token (see the quick start section) or using the
+ `WINSTON_MODULE_NEST_PROVIDER` token, along with the typing `LoggerService` from `@nestjs/common` package:
+
+```typescript
+import { Controller, Inject, LoggerService } from '@nestjs/common';
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+
+@Controller('cats')
+export class CatsController {
+  constructor(@Inject(WINSTON_MODULE_NEST_PROVIDER) private readonly logger: LoggerService) { }
+}
+```
+
+This works because `WinstonLogger` is an implementation of the `LoggerService` interface, forwarding all calls to the winston logger (injected) singleton instance.
+
+## Use as the main Nest logger (also for bootstrapping)
+
+Using the dependency injection has one minor drawback. Nest has to bootstrap the application first (instantiating modules and providers, injecting dependencies, etc) and during this process the instance of `WinstonLogger` is not yet available, which means that Nest falls back to the internal logger.
+
+One solution is to create the logger outside of the application lifecycle, using the `createLogger` function, and pass it to `NestFactory.create`:
+
+```typescript
+import { WinstonModule } from 'nest-winston';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule, {
+    logger: WinstonModule.createLogger({
+      // options (same as WinstonModule.forRoot() options)
+    })
+  });
+}
+bootstrap();
+```
+
+By doing this, you give up the dependency injection, meaning that `WinstonModule.forRoot` and `WinstonModule.forRootAsync` are not needed anymore.
+
+To use the logger in your application, just import the `Logger` class from `@nestjs/common` and use its static methods. Nest `Logger` wraps our winston logger (the same instance returned by the `createLogger` method) and will forward all calls to it.
+
+## Utilities
 
 The module also provides a custom Nest-like special formatter for console transports:
 
@@ -131,31 +173,12 @@ import * as winston from 'winston';
 export class AppModule {}
 ```
 
-When creating loggers from `WinstonModule`, Nest has to bootstrap the application first. This means instantiating all the modules and the providers, injecting dependencies, etc. During this "bootstrapping" process, instances of `WinstonLogger` are not available which means Nest falls back to an internal logger.
-
-In order to have a winston logger used during bootstrapping, the logger has to created outside of the application lifecycle and passed to `NestFactory.create` as [an option](https://docs.nestjs.com/techniques/logger):
-
-```typescript
-import { WinstonModule } from 'nest-winston';
-
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
-    logger: WinstonModule.createLogger({
-      // options (same as WinstonModule.forRoot() options)
-    })
-  });
-}
-bootstrap();
-```
-
-The bootstrapping logger will be used unless another logger is set (i.e. when `app.useLogger()` is called).
-
 ## Contributing
 
 New features and bugfixes are always welcome! In order to contribute to this project, follow a few easy steps:
 
 1. [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) this repository, clone it on your machine and run `npm install`
-2. Open your local repository with [Visual Studio code](https://code.visualstudio.com/) and install all the suggested extensions
+2. Open your local repository with [Visual Studio Code](https://code.visualstudio.com/) and install all the suggested extensions
 3. Create a branch `my-awesome-feature` and commit to it
 4. Run `npm run lint`, `npm run test` and `npm run build` and verify that they complete without errors
 5. Push `my-awesome-feature` branch to GitHub and open a [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)
