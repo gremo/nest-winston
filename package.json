@@ -15,7 +15,7 @@
     "/dist"
   ],
   "scripts": {
-    "lint": "tslint --project tsconfig.json",
+    "lint": "eslint src/**/*.ts --ignore-pattern src/**/*.spec.ts",
     "test": "mocha --config .mocharc.json",
     "prebuild": "rimraf dist",
     "build": "tsc"
@@ -31,14 +31,16 @@
     "@nestjs/testing": "^7.1.2",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
+    "@typescript-eslint/eslint-plugin": "^3.1.0",
+    "@typescript-eslint/parser": "^3.1.0",
     "chai": "^4.2.0",
+    "eslint": "^7.1.0",
     "mocha": "^7.2.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.5",
     "source-map-support": "^0.5.19",
     "ts-node": "^8.10.2",
-    "tslint": "^6.1.2",
     "typescript": "^3.9.3",
     "winston": "^3.2.1"
   },

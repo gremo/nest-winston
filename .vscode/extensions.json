@@ -1,8 +1,8 @@
 {
   "recommendations": [
       "davidanson.vscode-markdownlint",
+      "dbaeumer.vscode-eslint"
       "editorconfig.editorconfig",
-      "hbenl.vscode-mocha-test-adapter",
-      "ms-vscode.vscode-typescript-tslint-plugin"
+      "hbenl.vscode-mocha-test-adapter"
   ]
 }

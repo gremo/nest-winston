@@ -1,0 +1,82 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "project": "tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "@typescript-eslint/array-type": "warn",
+    "@typescript-eslint/brace-style": "warn",
+    "@typescript-eslint/comma-spacing": "warn",
+    "@typescript-eslint/consistent-type-assertions": "warn",
+    "@typescript-eslint/func-call-spacing": "warn",
+    "@typescript-eslint/indent": ["warn", 2, {
+      "SwitchCase": 1
+    }],
+    "@typescript-eslint/member-delimiter-style": "warn",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-throw-literal": "warn",
+    "@typescript-eslint/no-unnecessary-boolean-literal-compare": "warn",
+    "@typescript-eslint/no-unnecessary-condition": "warn",
+    "@typescript-eslint/prefer-for-of": "warn",
+    "@typescript-eslint/prefer-includes": "warn",
+    "@typescript-eslint/prefer-optional-chain": "warn",
+    "@typescript-eslint/prefer-string-starts-ends-with": "warn",
+    "@typescript-eslint/quotes": ["warn", "single"],
+    "@typescript-eslint/require-array-sort-compare": "warn",
+    "@typescript-eslint/type-annotation-spacing": "warn",
+    "@typescript-eslint/space-before-function-paren": ["warn", {
+      "anonymous": "always",
+      "asyncArrow": "always",
+      "named": "never"
+    }],
+    "array-bracket-spacing": "warn",
+    "arrow-parens": ["warn", "as-needed"],
+    "computed-property-spacing": "warn",
+    "consistent-return": "warn",
+    "curly": ["warn", "all"],
+    "eol-last": "warn",
+    "eqeqeq": "warn",
+    "key-spacing": ["warn"],
+    "new-cap": ["warn", {
+      "capIsNewExceptions": [
+        "Global",
+        "Injectable",
+        "Module"
+      ]
+    }],
+    "new-parens": "warn",
+    "no-multiple-empty-lines": ["warn", {
+      "max": 1
+    }],
+    "no-nested-ternary": "warn",
+    "no-return-assign": ["warn", "always"],
+    "no-trailing-spaces": "warn",
+    "no-unneeded-ternary": "warn",
+    "object-curly-spacing": ["warn", "always"],
+    "padded-blocks": ["warn", "never"],
+    "quote-props": ["warn", "consistent-as-needed"],
+    "semi-spacing": "warn",
+    "space-before-blocks": ["warn", "always"],
+    "space-in-parens": "warn",
+    "space-infix-ops": ["warn", {
+      "int32Hint": true
+    }],
+    "space-unary-ops": "warn",
+    "spaced-comment": ["warn", "always"],
+    "yoda": ["warn", "always", {
+      "onlyEquality": true
+    }]
+  }
+}
