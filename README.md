@@ -143,7 +143,29 @@ bootstrap();
 
 By doing this, you give up the dependency injection, meaning that `WinstonModule.forRoot` and `WinstonModule.forRootAsync` are not needed anymore.
 
-To use the logger in your application, just import the `Logger` class from `@nestjs/common` and use its static methods. Nest `Logger` wraps our winston logger (the same instance returned by the `createLogger` method) and will forward all calls to it.
+To use the logger also in your application, change your main module to provide the `Logger` service from `@nestjs/common`:
+
+```typescript
+import { Logger, Module } from '@nestjs/common';
+
+@Module({
+    providers: [Logger],
+})
+export class AppModule {}
+```
+
+Then simply inject the `Logger`:
+
+```typescript
+import { Controller, Inject, Logger, LoggerService } from '@nestjs/common';
+
+@Controller('cats')
+export class CatsController {
+  constructor(@Inject(Logger) private readonly logger: LoggerService) { }
+}
+```
+
+This works because Nest `Logger` wraps our winston logger (the same instance returned by the `createLogger` method) and will forward all calls to it.
 
 ## Utilities
 
