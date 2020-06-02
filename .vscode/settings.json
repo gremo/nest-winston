@@ -1,9 +1,13 @@
 {
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.markdownlint": true
+  },
+  "eslint.enable": true,
   "files.exclude": {
     "**/.vscode": true,
     "**/dist": true,
     "**/node_modules": true
   },
-  "javascript.implicitProjectConfig.experimentalDecorators": true,
-  "testExplorer.codeLens": false
+  "javascript.implicitProjectConfig.experimentalDecorators": true
 }
