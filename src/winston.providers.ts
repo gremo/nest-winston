@@ -1,37 +1,8 @@
 import { Logger, LoggerOptions, createLogger } from 'winston';
-import { LoggerService, Provider, Type } from '@nestjs/common';
+import { Provider, Type } from '@nestjs/common';
 import { WINSTON_MODULE_NEST_PROVIDER, WINSTON_MODULE_OPTIONS, WINSTON_MODULE_PROVIDER } from './winston.constants';
 import { WinstonModuleAsyncOptions, WinstonModuleOptions, WinstonModuleOptionsFactory } from './winston.interfaces';
-
-class WinstonLogger implements LoggerService {
-  private context?: string;
-
-  constructor(private readonly logger: Logger) { }
-
-  public setContext(context: string) {
-    this.context = context;
-  }
-
-  public log(message: any, context?: string) {
-    return this.logger.info(message, { context: context || this.context });
-  }
-
-  public error(message: any, trace?: string, context?: string): any {
-    return this.logger.error(message, { trace, context: context || this.context });
-  }
-
-  public warn(message: any, context?: string): any {
-    return this.logger.warn(message, { context: context || this.context });
-  }
-
-  public debug?(message: any, context?: string): any {
-    return this.logger.debug(message, { context: context || this.context });
-  }
-
-  public verbose?(message: any, context?: string): any {
-    return this.logger.verbose(message, { context: context || this.context });
-  }
-}
+import { WinstonLogger } from './winston.classes';
 
 export function createNestWinstonLogger(loggerOpts: WinstonModuleOptions): WinstonLogger {
   return new WinstonLogger(createLogger(loggerOpts));
