@@ -1,7 +1,7 @@
 import { green, yellow } from 'colors/safe';
-import safeStringify from 'fast-safe-stringify';
-import { format } from 'winston';
 import { Format } from 'logform';
+import { format } from 'winston';
+import safeStringify from 'fast-safe-stringify';
 
 const nestLikeConsoleFormat = (appName = 'NestWinston'): Format => format.printf(({ context, level, timestamp, message, ...meta }) => {
   return `${green(`[${appName}]`)} ` +

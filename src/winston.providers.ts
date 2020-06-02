@@ -1,5 +1,5 @@
+import { Logger, LoggerOptions, createLogger } from 'winston';
 import { LoggerService, Provider, Type } from '@nestjs/common';
-import { createLogger, Logger, LoggerOptions } from 'winston';
 import { WINSTON_MODULE_NEST_PROVIDER, WINSTON_MODULE_OPTIONS, WINSTON_MODULE_PROVIDER } from './winston.constants';
 import { WinstonModuleAsyncOptions, WinstonModuleOptions, WinstonModuleOptionsFactory } from './winston.interfaces';
 

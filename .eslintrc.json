@@ -68,6 +68,7 @@
     "padded-blocks": ["warn", "never"],
     "quote-props": ["warn", "consistent-as-needed"],
     "semi-spacing": "warn",
+    "sort-imports": "warn",
     "space-before-blocks": ["warn", "always"],
     "space-in-parens": "warn",
     "space-infix-ops": ["warn", {
