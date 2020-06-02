@@ -13,8 +13,11 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
   },
+  "include": [
+    "src/**/*"
+],
   "exclude": [
-    "./dist",
+    "node_modules",
     "**/*.spec.ts"
   ]
 }
