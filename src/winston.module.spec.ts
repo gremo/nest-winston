@@ -1,5 +1,3 @@
-/* tslint:disable:only-arrow-functions max-classes-per-file */
-
 import { Injectable, Module } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { expect } from 'chai';
@@ -7,8 +5,8 @@ import { WINSTON_MODULE_NEST_PROVIDER, WINSTON_MODULE_PROVIDER } from './winston
 import { WinstonModuleOptions, WinstonModuleOptionsFactory } from './winston.interfaces';
 import { WinstonModule } from './winston.module';
 
-describe('Winston module', function() {
-  it('boots successfully', async function() {
+describe('Winston module', function () {
+  it('boots successfully', async function () {
     const rootModule = await Test.createTestingModule({
       imports: [
         WinstonModule.forRoot({}),
@@ -19,7 +17,7 @@ describe('Winston module', function() {
     expect(rootModule.get(WINSTON_MODULE_NEST_PROVIDER)).to.be.an('object');
   });
 
-  it('boots successfully asynchronously via useFactory', async function() {
+  it('boots successfully asynchronously via useFactory', async function () {
     @Injectable()
     class ConfigService {
       public loggerOptions = {};
@@ -48,7 +46,7 @@ describe('Winston module', function() {
     expect(rootModule.get(WINSTON_MODULE_NEST_PROVIDER)).to.be.an('object');
   });
 
-  it('boots successfully asynchronously via useClass', async function() {
+  it('boots successfully asynchronously via useClass', async function () {
     @Injectable()
     class ConfigService implements WinstonModuleOptionsFactory {
       private loggerOptions = {};
@@ -57,12 +55,6 @@ describe('Winston module', function() {
         return this.loggerOptions;
       }
     }
-
-    @Module({
-      providers: [ConfigService],
-      exports: [ConfigService],
-    })
-    class FeatureModule {}
 
     const rootModule = await Test.createTestingModule({
       imports: [
