@@ -7,11 +7,11 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/nest-winston"><img src="https://img.shields.io/npm/v/nest-winston.svg" alt="NPM Version" /></a>
-  <a href="https://www.npmjs.com/package/nest-winston"><img src="https://img.shields.io/npm/dw/nest-winston.svg" alt="NPM Downloads" /></a>
+  <a href="https://www.npmjs.com/package/nest-winston"><img src="https://img.shields.io/npm/v/nest-winston.svg" alt="NPM version" /></a>
+  <a href="https://www.npmjs.com/package/nest-winston"><img src="https://img.shields.io/npm/dw/nest-winston.svg" alt="NPM downloads" /></a>
   <a href="https://travis-ci.org/gremo/nest-winston"><img src="https://travis-ci.org/gremo/nest-winston.svg?branch=master" alt="Travis build" /></a>
   <a href="https://github.com/gremo/nest-winston/issues"><img src="https://img.shields.io/github/issues/gremo/nest-winston.svg" alt="GitHub issues" /></a>
-  <a href="https://david-dm.org/gremo/nest-winston"><img alt="David" src="https://img.shields.io/david/gremo/nest-winston.svg" alt="dependencies Status"></a>
+  <a href="https://david-dm.org/gremo/nest-winston"><img src="https://img.shields.io/david/gremo/nest-winston.svg" alt="dependencies status"></a>
   <a href="https://david-dm.org/gremo/nest-winston?type=dev"><img src="https://david-dm.org/gremo/nest-winston/dev-status.svg" alt="devDependencies status" /></a>
 </p>
 
