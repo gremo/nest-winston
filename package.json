@@ -42,7 +42,7 @@
     "source-map-support": "^0.5.19",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.5",
-    "winston": "^3.3.0"
+    "winston": "^3.3.1"
   },
   "peerDependencies": {
     "@nestjs/common": "^5.0.0 || ^6.6.0 || ^7.0.0",
