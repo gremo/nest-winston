@@ -11,23 +11,38 @@ export class WinstonLogger implements LoggerService {
     this.context = context;
   }
 
-  public log(message: any, context?: string) {
-    return this.logger.info(message, { context: context || this.context });
+  public log(message: any, meta?: string | Record<string, unknown>) {
+    if('object' === typeof meta) {
+      return this.logger.info(message, { context: this.context, ...meta });
+    }
+    return this.logger.info(message, { context: meta || this.context, });
   }
 
-  public error(message: any, trace?: string, context?: string): any {
-    return this.logger.error(message, { trace, context: context || this.context });
+  public error(message: any, trace?: string, meta?: string | Record<string, unknown>): any {
+    if('object' === typeof meta) {
+      return this.logger.error(message, { trace, context: this.context, ...meta });
+    }
+    return this.logger.error(message, { trace, context: meta || this.context });
   }
 
-  public warn(message: any, context?: string): any {
-    return this.logger.warn(message, { context: context || this.context });
+  public warn(message: any, meta?: string | Record<string, unknown>): any {
+    if('object' === typeof meta) {
+      return this.logger.warn(message, { context: this.context, ...meta });
+    }
+    return this.logger.warn(message, { context: meta || this.context });
   }
 
-  public debug?(message: any, context?: string): any {
-    return this.logger.debug(message, { context: context || this.context });
+  public debug?(message: any, meta?: string | Record<string, unknown>): any {
+    if('object' === typeof meta) {
+      return this.logger.debug(message, { context: this.context, ...meta });
+    }
+    return this.logger.debug(message, { context: meta || this.context });
   }
 
-  public verbose?(message: any, context?: string): any {
-    return this.logger.verbose(message, { context: context || this.context });
+  public verbose?(message: any, meta?: string | Record<string, unknown>): any {
+    if('object' === typeof meta) {
+      return this.logger.verbose(message, { context: this.context, ...meta });
+    }
+    return this.logger.verbose(message, { context: meta || this.context });
   }
 }
