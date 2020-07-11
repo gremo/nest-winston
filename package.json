@@ -21,7 +21,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "colors": "^1.4.0",
+    "cli-color": "^2.0.0",
     "fast-safe-stringify": "^2.0.7"
   },
   "devDependencies": {
@@ -30,6 +30,7 @@
     "@nestjs/platform-express": "^7.3.2",
     "@nestjs/testing": "^7.3.2",
     "@types/chai": "^4.2.11",
+    "@types/cli-color": "^2.0.0",
     "@types/mocha": "^8.0.0",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
     "@typescript-eslint/parser": "^3.6.0",
