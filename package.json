@@ -36,7 +36,7 @@
     "@typescript-eslint/parser": "^3.10.1",
     "chai": "^4.2.0",
     "eslint": "^7.7.0",
-    "mocha": "^8.1.2",
+    "mocha": "^8.1.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.2",
