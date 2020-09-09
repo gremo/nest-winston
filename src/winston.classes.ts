@@ -16,8 +16,10 @@ export class WinstonLogger implements LoggerService {
 
     if('object' === typeof message) {
       const { message: msg, ...meta } = message;
+
       return this.logger.info(msg as string, { context, ...meta });
     }
+
     return this.logger.info(message, { context });
   }
 
@@ -25,12 +27,15 @@ export class WinstonLogger implements LoggerService {
     context = context || this.context;
 
     if(message instanceof Error) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { message: msg, name, stack, ...meta } = message;
+
       return this.logger.error(msg, { context, stack: [trace || message.stack], ...meta });
     }
 
     if('object' === typeof message) {
       const { message: msg, ...meta } = message;
+
       return this.logger.error(msg as string, { context, stack: [trace], ...meta });
     }
 
@@ -42,8 +47,10 @@ export class WinstonLogger implements LoggerService {
 
     if('object' === typeof message) {
       const { message: msg, ...meta } = message;
+
       return this.logger.warn(msg as string, { context, ...meta });
     }
+
     return this.logger.warn(message, { context });
   }
 
@@ -52,8 +59,10 @@ export class WinstonLogger implements LoggerService {
 
     if('object' === typeof message) {
       const { message: msg, ...meta } = message;
+
       return this.logger.debug(msg as string, { context, ...meta });
     }
+
     return this.logger.debug(message, { context });
   }
 
@@ -62,8 +71,10 @@ export class WinstonLogger implements LoggerService {
 
     if('object' === typeof message) {
       const { message: msg, ...meta } = message;
+
       return this.logger.verbose(msg as string, { context, ...meta });
     }
+
     return this.logger.verbose(message, { context });
   }
 }
