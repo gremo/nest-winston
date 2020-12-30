@@ -25,10 +25,10 @@
     "fast-safe-stringify": "^2.0.7"
   },
   "devDependencies": {
-    "@nestjs/common": "^7.5.3",
-    "@nestjs/core": "^7.5.3",
-    "@nestjs/platform-express": "^7.5.3",
-    "@nestjs/testing": "^7.5.3",
+    "@nestjs/common": "^7.6.5",
+    "@nestjs/core": "^7.6.5",
+    "@nestjs/platform-express": "^7.6.5",
+    "@nestjs/testing": "^7.6.5",
     "@types/chai": "^4.2.14",
     "@types/cli-color": "^2.0.0",
     "@types/mocha": "^8.2.0",
