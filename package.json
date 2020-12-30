@@ -31,7 +31,7 @@
     "@nestjs/testing": "^7.5.3",
     "@types/chai": "^4.2.14",
     "@types/cli-color": "^2.0.0",
-    "@types/mocha": "^8.0.4",
+    "@types/mocha": "^8.2.0",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
     "chai": "^4.2.0",
