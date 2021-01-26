@@ -35,7 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "@typescript-eslint/parser": "^4.11.1",
     "chai": "^4.2.0",
-    "eslint": "^7.17.0",
+    "eslint": "^7.18.0",
     "mocha": "^8.2.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
