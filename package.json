@@ -33,7 +33,7 @@
     "@types/cli-color": "^2.0.0",
     "@types/mocha": "^8.2.0",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
-    "@typescript-eslint/parser": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.2",
     "chai": "^4.2.0",
     "eslint": "^7.18.0",
     "mocha": "^8.2.1",
