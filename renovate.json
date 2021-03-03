@@ -10,5 +10,10 @@
       ],
       "rangeStrategy": "bump"
     }
-  ]
+  ],
+  "force": {
+    "constraints": {
+      "node": "< 15.0.0"
+    }
+  }
 }
