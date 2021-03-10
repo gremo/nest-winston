@@ -53,7 +53,7 @@ export class CatsController {
 }
 ```
 
-Note that `WinstonModule` is a global module, it will be available in all you feature modules.
+Note that `WinstonModule` is a global module, it will be available in all your feature modules.
 
 ## Async configuration
 
