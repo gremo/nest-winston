@@ -1,7 +1,8 @@
 {
   "extends": [
     "config:base",
-    ":disablePeerDependencies"
+    ":disablePeerDependencies",
+    ":dependencyDashboard"
   ],
   "packageRules": [
     {
