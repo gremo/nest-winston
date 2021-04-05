@@ -177,11 +177,11 @@ export class CatsController {
 
 Here is a summary of the three techniques explained above:
 
-| Injection token                | Typing                                | Module config | Usage                                                                                  |
-| :----------------------------- | :------------------------------------ | :------------ | :------------------------------------------------------------------------------------- |
-| `WINSTON_MODULE_PROVIDER`      | `Logger` from `winston`               | Yes           | + Your application/message logging                                                     |
-| `WINSTON_MODULE_NEST_PROVIDER` | `LoggerService` from `@nestjs/common` | Yes           | + Your application/message logging <br> + Nest logger                                  |
-|                                | `Logger` from `@nestjs/common`        | No            | + Your application/message logging <br> + Nest logger <br> + Application bootstrapping |
+| Injection token and typing                                                | Module config | Usage                                                                                  |
+| :------------------------------------------------------------------------ | :------------ | :------------------------------------------------------------------------------------- |
+| `WINSTON_MODULE_PROVIDER` <br> `Logger` from `winston`                    | Yes           | + Your application/message logging                                                     |
+| `WINSTON_MODULE_NEST_PROVIDER` <br> `LoggerService` from `@nestjs/common` | Yes           | + Your application/message logging <br> + Nest logger                                  |
+| *none* <br> `Logger` from `@nestjs/common`                                | No            | + Your application/message logging <br> + Nest logger <br> + Application bootstrapping |
 
 ## Utilities
 
