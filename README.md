@@ -21,7 +21,7 @@
 npm install --save nest-winston winston
 ```
 
-## Quick Start
+## Quick start
 
 Import `WinstonModule` into the root `AppModule` and use the `forRoot()` method to configure it. This method accepts the same options object as [`createLogger()`](https://github.com/winstonjs/winston#usage) function from the winston package:
 
@@ -40,7 +40,7 @@ import * as winston from 'winston';
 export class AppModule {}
 ```
 
-Afterward, the winston instance will be available to inject across entire project using the `winston` injection token:
+Afterward, the winston instance will be available to inject across entire project (and in your feature modules, being `WinstonModule` a global one) using the `WINSTON_MODULE_PROVIDER` injection token:
 
 ```typescript
 import { Controller, Inject } from '@nestjs/common';
@@ -52,8 +52,6 @@ export class CatsController {
   constructor(@Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger) { }
 }
 ```
-
-Note that `WinstonModule` is a global module, it will be available in all your feature modules.
 
 ## Async configuration
 
@@ -91,9 +89,11 @@ WinstonModule.forRootAsync({
 
 With the above code, Nest will create a new instance of `WinstonConfigService` and its method `createWinstonModuleOptions` will be called in order to provide the module options.
 
-## Use as the main Nest logger
+## Replacing the Nest logger
 
-Apart from application logging, this module also provides the `WinstonLogger` custom implementation, for use with the Nest logging system. Example `main.ts` file:
+This module also provides the `WinstonLogger` class (custom implementation of the [`LoggerService`](https://github.com/nestjs/nest/blob/master/packages/common/services/logger.service.ts#L10) interface) to be used by Nest for system logging. This will ensure consistent behavior and formatting across both Nest system logging and your application event/message logging.
+
+Change your `main.ts` as shown below:
 
 ```typescript
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
@@ -105,10 +105,7 @@ async function bootstrap() {
 bootstrap();
 ```
 
-Here the `get()` method on the NestApplication instance is used to retrieve the singleton instance of `WinstonLogger` class, which is still configured using either `WinstonModule.forRoot` or `WinstonModule.forRootAsync` methods.
-
-When using this technique, you can inject the logger either using the `WINSTON_MODULE_PROVIDER` token (see the quick start section) or using the
- `WINSTON_MODULE_NEST_PROVIDER` token, along with the typing `LoggerService` from `@nestjs/common` package:
+Then inject the logger using the `WINSTON_MODULE_NEST_PROVIDER` token and the `LoggerService` typing:
 
 ```typescript
 import { Controller, Inject, LoggerService } from '@nestjs/common';
@@ -120,13 +117,15 @@ export class CatsController {
 }
 ```
 
-This works because `WinstonLogger` is an implementation of the `LoggerService` interface, forwarding all calls to the winston logger (injected) singleton instance.
+Under the hood, the `WinstonLogger` class uses the configured winston logger instance (through `forRoot` or `forRootAsync`), forwarding all calls to it.
 
-## Use as the main Nest logger (also for bootstrapping)
+## Replacing the Nest logger (also for bootstrapping)
 
-Using the dependency injection has one minor drawback. Nest has to bootstrap the application first (instantiating modules and providers, injecting dependencies, etc) and during this process the instance of `WinstonLogger` is not yet available, which means that Nest falls back to the internal logger.
+> **Important**: by doing this, you give up the dependency injection, meaning that `forRoot` and `forRootAsync` are not needed and shouldn't be used. Remove them from your main module.
 
-One solution is to create the logger outside of the application lifecycle, using the `createLogger` function, and pass it to `NestFactory.create`:
+Using the dependency injection has one minor drawback. Nest has to bootstrap the application first (instantiating modules and providers, injecting dependencies, etc.) and during this process the instance of `WinstonLogger` is not yet available, which means that Nest falls back to the internal logger.
+
+One solution is to create the logger outside of the application lifecycle, using the `createLogger` function, and pass it to `NestFactory.create`. Nest will then wrap our winston logger (the same instance returned by the `createLogger` method) into the `Logger` class, forwarding all calls to it:
 
 ```typescript
 import { WinstonModule } from 'nest-winston';
@@ -141,31 +140,48 @@ async function bootstrap() {
 bootstrap();
 ```
 
-By doing this, you give up the dependency injection, meaning that `WinstonModule.forRoot` and `WinstonModule.forRootAsync` are not needed anymore.
-
-To use the logger also in your application, change your main module to provide the `Logger` service from `@nestjs/common`:
+Change your main module to provide the `Logger` service:
 
 ```typescript
 import { Logger, Module } from '@nestjs/common';
 
 @Module({
-    providers: [Logger],
+  providers: [Logger],
 })
 export class AppModule {}
 ```
 
-Then simply inject the `Logger`:
+Then inject the logger simply by type hinting it with `Logger` from `@nestjs/common`:
+
+```typescript
+import { Controller, Logger } from '@nestjs/common';
+
+@Controller('cats')
+export class CatsController {
+  constructor(private readonly logger: Logger) {}
+}
+```
+
+Alternative syntax using the `LoggerService` typing and the `@Inject` decorator:
 
 ```typescript
 import { Controller, Inject, Logger, LoggerService } from '@nestjs/common';
 
 @Controller('cats')
 export class CatsController {
-  constructor(@Inject(Logger) private readonly logger: LoggerService) { }
+  constructor(@Inject(Logger) private readonly logger: LoggerService) {}
 }
 ```
 
-This works because Nest `Logger` wraps our winston logger (the same instance returned by the `createLogger` method) and will forward all calls to it.
+## Injection and usage summary
+
+Here is a summary of the three techniques explained above:
+
+| Injection token                | Typing                                | Module config | Usage                                                                                  |
+| :----------------------------- | :------------------------------------ | :------------ | :------------------------------------------------------------------------------------- |
+| `WINSTON_MODULE_PROVIDER`      | `Logger` from `winston`               | Yes           | + Your application/message logging                                                     |
+| `WINSTON_MODULE_NEST_PROVIDER` | `LoggerService` from `@nestjs/common` | Yes           | + Your application/message logging <br> + Nest logger                                  |
+|                                | `Logger` from `@nestjs/common`        | No            | + Your application/message logging <br> + Nest logger <br> + Application bootstrapping |
 
 ## Utilities
 
