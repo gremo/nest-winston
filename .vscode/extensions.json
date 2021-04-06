@@ -3,6 +3,6 @@
     "davidanson.vscode-markdownlint",
     "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",
-    "hbenl.vscode-mocha-test-adapter"
+    "kavod-io.vscode-jest-test-adapter"
   ]
 }

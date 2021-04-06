@@ -1,6 +1,5 @@
 import { Injectable, Module } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { expect } from 'chai';
 import { WINSTON_MODULE_NEST_PROVIDER, WINSTON_MODULE_PROVIDER } from './winston.constants';
 import { WinstonModuleOptions, WinstonModuleOptionsFactory } from './winston.interfaces';
 import { WinstonModule } from './winston.module';
@@ -13,8 +12,8 @@ describe('Winston module', function () {
       ],
     }).compile();
 
-    expect(rootModule.get(WINSTON_MODULE_PROVIDER)).to.be.an('object');
-    expect(rootModule.get(WINSTON_MODULE_NEST_PROVIDER)).to.be.an('object');
+    expect(rootModule.get(WINSTON_MODULE_PROVIDER)).toBeDefined();
+    expect(rootModule.get(WINSTON_MODULE_NEST_PROVIDER)).toBeDefined();
   });
 
   it('boots successfully asynchronously via useFactory', async function () {
@@ -42,8 +41,8 @@ describe('Winston module', function () {
     const app = rootModule.createNestApplication();
     await app.init();
 
-    expect(rootModule.get(WINSTON_MODULE_PROVIDER)).to.be.an('object');
-    expect(rootModule.get(WINSTON_MODULE_NEST_PROVIDER)).to.be.an('object');
+    expect(rootModule.get(WINSTON_MODULE_PROVIDER)).toBeDefined();
+    expect(rootModule.get(WINSTON_MODULE_NEST_PROVIDER)).toBeDefined();
   });
 
   it('boots successfully asynchronously via useClass', async function () {
@@ -67,7 +66,7 @@ describe('Winston module', function () {
     const app = rootModule.createNestApplication();
     await app.init();
 
-    expect(rootModule.get(WINSTON_MODULE_PROVIDER)).to.be.an('object');
-    expect(rootModule.get(WINSTON_MODULE_NEST_PROVIDER)).to.be.an('object');
+    expect(rootModule.get(WINSTON_MODULE_PROVIDER)).toBeDefined();
+    expect(rootModule.get(WINSTON_MODULE_NEST_PROVIDER)).toBeDefined();
   });
 });

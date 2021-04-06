@@ -1,0 +1,8 @@
+{
+  "displayName": "nest-winston",
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "testMatch": [
+    "<rootDir>/src/**/*(*.)@(spec|test).[tj]s?(x)"
+  ]
+}
