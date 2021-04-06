@@ -3,11 +3,10 @@
     "source.fixAll.eslint": true,
     "source.fixAll.markdownlint": true
   },
-  "eslint.enable": true,
   "files.exclude": {
     "**/.vscode": true,
     "**/dist": true,
     "**/node_modules": true
   },
-  "javascript.implicitProjectConfig.experimentalDecorators": true
+  "js/ts.implicitProjectConfig.experimentalDecorators": true
 }
