@@ -1,2 +1,3 @@
 dist/
+sample/
 src/**/*.spec.ts
