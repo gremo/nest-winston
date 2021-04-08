@@ -21,6 +21,14 @@
 npm install --save nest-winston winston
 ```
 
+Having troubles configuring `nest-winston`? Clone this repository and `cd` in a sample:
+
+```bash
+cd sample/quick-start
+npm install
+npm run start:dev
+```
+
 ## Quick start
 
 Import `WinstonModule` into the root `AppModule` and use the `forRoot()` method to configure it. This method accepts the same options object as [`createLogger()`](https://github.com/winstonjs/winston#usage) function from the winston package:
