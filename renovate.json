@@ -5,6 +5,7 @@
   ],
   "packageRules": [
     {
+      "matchPaths": ["+(package.json)"],
       "depTypeList": [
         "devDependencies"
       ],
