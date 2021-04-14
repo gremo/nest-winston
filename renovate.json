@@ -1,16 +1,24 @@
 {
   "extends": [
     "config:base",
-    ":disablePeerDependencies"
+    ":automergeMinor",
+    ":automergePatch",
+    ":disablePeerDependencies",
+    ":pinDevDependencies",
+    ":semanticCommitsDisabled"
   ],
   "packageRules": [
     {
-      "matchPaths": ["+(package.json)"],
-      "depTypeList": [
-        "devDependencies"
-      ],
+      "matchPaths": ["package.json"],
+      "enabled": false
+    },
+    {
+      "matchFiles": ["package.json"],
+      "enabled": true
+    },
+    {
+      "matchDepTypes": ["dependencies"],
       "rangeStrategy": "bump"
     }
-  ],
-  "semanticCommits": "disabled"
+  ]
 }
