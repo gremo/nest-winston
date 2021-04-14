@@ -13,10 +13,14 @@ const nestLikeColorScheme: Record<string, bare.Format> = {
 };
 
 const nestLikeConsoleFormat = (appName = 'NestWinston'): Format => format.printf(({ context, level, timestamp, message, ...meta }) => {
-  // Only format the timestamp to a locale representation if it's ISO 8601 format (winston.format.timestamp default format)
   if ('undefined' !== typeof timestamp) {
-    if (timestamp === (new Date(timestamp)).toISOString()) {
-      timestamp = (new Date(timestamp)).toLocaleString();
+    // Only format the timestamp to a locale representation if it's ISO 8601 format. Any format
+    // that is not a valid date string will throw, just ignore it (it will be printed as-is).
+    try {
+      if (timestamp === (new Date(timestamp)).toISOString()) {
+        timestamp = (new Date(timestamp)).toLocaleString();
+      }
+    } catch (error) { // eslint-disable-next-line no-empty
     }
   }
 
