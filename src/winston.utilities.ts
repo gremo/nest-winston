@@ -12,7 +12,7 @@ const nestLikeColorScheme: Record<string, bare.Format> = {
   verbose: clc.cyanBright,
 };
 
-const nestLikeConsoleFormat = (appName = 'NestWinston'): Format => format.printf(({ context, level, timestamp, message, ...meta }) => {
+const nestLikeConsoleFormat = (appName = 'NestWinston'): Format => format.printf(({ context, level, timestamp, message, ms, ...meta }) => {
   if ('undefined' !== typeof timestamp) {
     // Only format the timestamp to a locale representation if it's ISO 8601 format. Any format
     // that is not a valid date string will throw, just ignore it (it will be printed as-is).
@@ -32,7 +32,8 @@ const nestLikeConsoleFormat = (appName = 'NestWinston'): Format => format.printf
          ('undefined' !== typeof timestamp ? `${timestamp} ` : '') +
          ('undefined' !== typeof context ? `${clc.yellow('[' + context + ']')} ` : '') +
          `${color(message)} - ` +
-         `${safeStringify(meta)}`;
+         `${safeStringify(meta)}` +
+         ('undefined' !== typeof ms ? ` ${clc.yellow(ms)}` : '');
 });
 
 export const utilities = {
