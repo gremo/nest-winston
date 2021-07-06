@@ -29,7 +29,7 @@
     "@nestjs/core": "7.6.17",
     "@nestjs/platform-express": "7.6.17",
     "@nestjs/testing": "7.6.17",
-    "@types/cli-color": "2.0.0",
+    "@types/cli-color": "2.0.1",
     "@types/jest": "26.0.23",
     "@typescript-eslint/eslint-plugin": "4.26.1",
     "@typescript-eslint/parser": "4.26.1",
