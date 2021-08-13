@@ -25,7 +25,7 @@ jobs:
         run: npm install @nestjs/common@$NEST_VERSION @nestjs/core@$NEST_VERSION @nestjs/testing@$NEST_VERSION
 
       - name: Install platform-express
-        if: !startsWith(matrix.nest-version, '^\^(5).*')
+        if: !(startsWith(matrix.nest-version, '^\^(5).*'))
         env:
           NEST_VERSION: ${{ matrix.nest-version }}
         run: npm install @nestjs/platform-express@$NEST_VERSION
