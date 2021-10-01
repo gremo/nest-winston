@@ -1,6 +1,6 @@
 {
   "name": "nest-winston",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "license": "MIT",
   "description": "A Nest module wrapper for winston",
   "keywords": [
