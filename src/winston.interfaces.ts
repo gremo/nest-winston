@@ -4,6 +4,10 @@ import { Type } from '@nestjs/common';
 
 export type WinstonModuleOptions = LoggerOptions;
 
+export type NestLikeConsoleFormatOptions = {
+  prettyPrint: boolean;
+};
+
 export interface WinstonModuleOptionsFactory {
   createWinstonModuleOptions(): Promise<WinstonModuleOptions> | WinstonModuleOptions;
 }

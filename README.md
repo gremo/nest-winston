@@ -210,7 +210,7 @@ import * as winston from 'winston';
           format: winston.format.combine(
             winston.format.timestamp(),
             winston.format.ms(),
-            nestWinstonModuleUtilities.format.nestLike(),
+            nestWinstonModuleUtilities.format.nestLike('MyApp', { prettyPrint: true }),
           ),
         }),
         // other transports...
