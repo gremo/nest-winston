@@ -25,10 +25,10 @@
     "fast-safe-stringify": "^2.1.1"
   },
   "devDependencies": {
-    "@nestjs/common": "8.2.0",
-    "@nestjs/core": "8.2.0",
-    "@nestjs/platform-express": "8.2.0",
-    "@nestjs/testing": "8.2.0",
+    "@nestjs/common": "8.2.1",
+    "@nestjs/core": "8.2.1",
+    "@nestjs/platform-express": "8.2.1",
+    "@nestjs/testing": "8.2.1",
     "@types/cli-color": "2.0.1",
     "@types/jest": "27.0.2",
     "@typescript-eslint/eslint-plugin": "4.33.0",
