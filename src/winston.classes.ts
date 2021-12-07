@@ -77,4 +77,8 @@ export class WinstonLogger implements LoggerService {
 
     return this.logger.verbose(message, { context });
   }
+
+  public getWinstonLogger(): Logger {
+    return this.logger;
+  }
 }
