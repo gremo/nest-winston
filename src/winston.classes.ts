@@ -12,12 +12,15 @@ export class WinstonLogger implements LoggerService {
   }
 
   public log(message: any, context?: string): any {
-    context = context || this.context;
+       context = context || this.context;
 
-    if('object' === typeof message) {
-      const { message: msg, ...meta } = message;
+    if ("object" === typeof message) {
+      const { message: msg, level = "info", ...meta } = message;
 
-      return this.logger.info(msg as string, { context, ...meta });
+      return this.logger.log(level, msg as string, {
+        context,
+        ...meta,
+      });
     }
 
     return this.logger.info(message, { context });
