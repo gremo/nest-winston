@@ -37,7 +37,7 @@
     "jest": "27.4.3",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
-    "rxjs": "7.4.0",
+    "rxjs": "7.5.4",
     "source-map-support": "0.5.21",
     "ts-jest": "27.0.7",
     "ts-node": "10.4.0",
