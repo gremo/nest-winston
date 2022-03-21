@@ -1,12 +1,12 @@
+import { ChalkInstance } from 'chalk';
 import { Format } from 'logform';
 import { NestLikeConsoleFormatOptions } from './winston.interfaces';
-import bare from 'cli-color/bare';
-import clc from 'cli-color';
+import clc from 'chalk';
 import { format } from 'winston';
 import { inspect } from 'util';
 import safeStringify from 'fast-safe-stringify';
 
-const nestLikeColorScheme: Record<string, bare.Format> = {
+const nestLikeColorScheme: Record<string, ChalkInstance> = {
   info: clc.greenBright,
   error: clc.red,
   warn: clc.yellow,
