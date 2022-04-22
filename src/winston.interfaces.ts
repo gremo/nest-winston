@@ -2,7 +2,7 @@ import { LoggerOptions } from 'winston';
 import { ModuleMetadata } from '@nestjs/common/interfaces';
 import { Type } from '@nestjs/common';
 
-export type LoggerMessage = string | { msg: string; [ key: string ]: any };
+export type LoggerMessage = string | { message: string; [ key: string ]: any };
 export type WinstonModuleOptions = LoggerOptions;
 
 export type NestLikeConsoleFormatOptions = {
