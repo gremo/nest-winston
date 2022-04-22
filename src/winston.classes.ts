@@ -1,5 +1,6 @@
 /* eslint @typescript-eslint/explicit-module-boundary-types: 'off' */
 import { Logger } from 'winston';
+import { LoggerMessage } from './winston.interfaces';
 import { LoggerService } from '@nestjs/common';
 
 export class WinstonLogger implements LoggerService {
@@ -11,7 +12,7 @@ export class WinstonLogger implements LoggerService {
     this.context = context;
   }
 
-  public log(message: any, context?: string): any {
+  public log(message: LoggerMessage, context?: string): any {
     context = context || this.context;
 
     if('object' === typeof message) {
@@ -23,10 +24,11 @@ export class WinstonLogger implements LoggerService {
     return this.logger.info(message, { context });
   }
 
-  public error(message: any, trace?: string, context?: string): any {
+  public error(message: LoggerMessage, trace?: string, context?: string): any {
     context = context || this.context;
 
     if(message instanceof Error) {
+      // @ts-expect-error if message is an Error, it is an object
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { message: msg, name, stack, ...meta } = message;
 
@@ -42,7 +44,7 @@ export class WinstonLogger implements LoggerService {
     return this.logger.error(message, { context, stack: [trace] });
   }
 
-  public warn(message: any, context?: string): any {
+  public warn(message: LoggerMessage, context?: string): any {
     context = context || this.context;
 
     if('object' === typeof message) {
@@ -54,7 +56,7 @@ export class WinstonLogger implements LoggerService {
     return this.logger.warn(message, { context });
   }
 
-  public debug?(message: any, context?: string): any {
+  public debug?(message: LoggerMessage, context?: string): any {
     context = context || this.context;
 
     if('object' === typeof message) {
@@ -66,7 +68,7 @@ export class WinstonLogger implements LoggerService {
     return this.logger.debug(message, { context });
   }
 
-  public verbose?(message: any, context?: string): any {
+  public verbose?(message: LoggerMessage, context?: string): any {
     context = context || this.context;
 
     if('object' === typeof message) {
