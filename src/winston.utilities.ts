@@ -38,13 +38,22 @@ const nestLikeConsoleFormat = (
     const formattedMeta = options?.prettyPrint
       ? inspect(JSON.parse(stringifiedMeta), { colors: true, depth: null })
       : stringifiedMeta;
+    // eslint-disable-next-line no-nested-ternary
+    const printContext = options?.printContext
+      ? 'function' === typeof options.printContext
+        ? options.printContext(message, level, context)
+        : options.printContext
+      : true;
 
     return (
       `${color(`[${appName}]`)} ` +
       `${clc.yellow(level.charAt(0).toUpperCase() + level.slice(1))}\t` +
       ('undefined' !== typeof timestamp ? `${timestamp} ` : '') +
-      ('undefined' !== typeof context
-        ? `${clc.yellow('[' + context + ']')} `
+      // eslint-disable-next-line no-nested-ternary
+      ('undefined' !== typeof context && printContext
+        ? 'object' !== typeof context
+          ? `${clc.yellow('[' + context + ']')} `
+          : `${clc.yellow('[' + safeStringify(context) + ']')} `
         : '') +
       `${color(message)} - ` +
       `${formattedMeta}` +

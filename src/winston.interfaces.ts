@@ -6,6 +6,7 @@ export type WinstonModuleOptions = LoggerOptions;
 
 export type NestLikeConsoleFormatOptions = {
   prettyPrint: boolean;
+  printContext: ((message: string, level: string, context: any) => boolean) | boolean;
 };
 
 export interface WinstonModuleOptionsFactory {
