@@ -229,7 +229,7 @@ export class AppModule {}
 ```
 
 # Logger methods
-Note the logger has different logger methods and each takes different argument to make sure the logger in formatted the same way across board take note of the following
+Note: The logger instance has different logger methods, and each takes different arguments. To make sure the logger is being formatted the same way across the board take note of the following.
 
 ```typescript
 Logger.debug(message: any, context?: string)
