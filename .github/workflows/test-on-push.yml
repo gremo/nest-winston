@@ -14,23 +14,41 @@ jobs:
           - nest-version: "^7"
           - nest-version: ""
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Install Nest
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 10.13.0
+
+      - name: Install nestjs
         env:
           NEST_VERSION: ${{ matrix.nest-version }}
         run: npm install @nestjs/common@$NEST_VERSION @nestjs/core@$NEST_VERSION @nestjs/testing@$NEST_VERSION
 
       - name: Install platform-express
-        if: startsWith(matrix.nest-version, '^\^(6|7|8).*')
+        if: >-
+          startsWith(matrix.nest-version, '^6') ||
+          startsWith(matrix.nest-version, '^7') ||
+          startsWith(matrix.nest-version, '^8')
         env:
           NEST_VERSION: ${{ matrix.nest-version }}
         run: npm install @nestjs/platform-express@$NEST_VERSION
 
-      - name: npm test
+      - name: Install rxjs
+        if: >-
+          startsWith(matrix.nest-version, '^5') ||
+          startsWith(matrix.nest-version, '^6') ||
+          startsWith(matrix.nest-version, '^7')
+        env:
+          RXJS_VERSION: "^6"
+        run: npm install rxjs@$RXJS_VERSION
+
+      - name: Test
         run: npm test
-      - name: npm run build
+
+      - name: Build
         run: npm run build
