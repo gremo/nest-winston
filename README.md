@@ -7,12 +7,18 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/nest-winston"><img src="https://img.shields.io/npm/v/nest-winston.svg" alt="NPM version" /></a>
-  <a href="https://www.npmjs.com/package/nest-winston"><img src="https://img.shields.io/npm/dw/nest-winston.svg" alt="NPM downloads" /></a>
-  <a href="https://travis-ci.com/gremo/nest-winston"><img src="https://travis-ci.com/gremo/nest-winston.svg?branch=master" alt="Travis build" /></a>
-  <a href="https://github.com/gremo/nest-winston/issues"><img src="https://img.shields.io/github/issues/gremo/nest-winston.svg" alt="GitHub issues" /></a>
-  <a href="https://david-dm.org/gremo/nest-winston"><img src="https://img.shields.io/david/gremo/nest-winston.svg" alt="dependencies status"></a>
-  <a href="https://david-dm.org/gremo/nest-winston?type=dev"><img src="https://david-dm.org/gremo/nest-winston/dev-status.svg" alt="devDependencies status" /></a>
+  <a href="https://www.npmjs.com/package/nest-winston"><img alt="NPM version" src="https://img.shields.io/npm/v/nest-winston.svg" /></a>
+  <a href="https://www.npmjs.com/package/nest-winston"><img alt="NPM downloads" src="https://img.shields.io/npm/dw/nest-winston.svg" /></a>
+  <a href="https://github.com/gremo/nest-winston/pulse"><img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/gremo/nest-winston"></a>
+  <a href="https://github.com/gremo/nest-winston/graphs/contributors" alt="Contributors"><img src="https://img.shields.io/github/contributors/gremo/nest-winston" /></a>
+  <a href="https://paypal.me/marcopolichetti" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/gremo/nest-winston/actions/workflows/test-on-push.yml"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/gremo/nest-winston/Test"></a>
+  <a href="https://github.com/gremo/nest-winston/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/gremo/nest-winston.svg" /></a>
+  <a href="https://github.com/gremo/nest-winston/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/gremo/nest-winston"></a>
+  <img alt="Libraries.io dependency status for GitHub repo" src="https://img.shields.io/librariesio/github/gremo/nest-winston">
 </p>
 
 ## Installation
