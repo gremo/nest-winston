@@ -19,12 +19,21 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+<<<<<<< HEAD
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 10.13.0
 
       - name: Install nestjs
+=======
+      - name: Install RxJS
+        env:
+          RXJS_VERSION: "^6"
+        run: npm install rxjs@$RXJS_VERSION
+
+      - name: Install Nest
+>>>>>>> 775fc19 (Fix GitHub action fail on npm install 🙏🏻)
         env:
           NEST_VERSION: ${{ matrix.nest-version }}
         run: npm install @nestjs/common@$NEST_VERSION @nestjs/core@$NEST_VERSION @nestjs/testing@$NEST_VERSION
