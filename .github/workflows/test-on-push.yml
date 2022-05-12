@@ -19,6 +19,11 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      - name: Install RxJS
+        env:
+          RXJS_VERSION: "^6"
+        run: npm install rxjs@$RXJS_VERSION
+
       - name: Install Nest
         env:
           NEST_VERSION: ${{ matrix.nest-version }}
