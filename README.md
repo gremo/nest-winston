@@ -228,6 +228,44 @@ import * as winston from 'winston';
 export class AppModule {}
 ```
 
+## Logger methods
+Note: The logger instance has different logger methods, and each takes different arguments. To make sure the logger is being formatted the same way across the board take note of the following.
+
+```typescript
+Logger.debug(message: any, context?: string)
+Logger.log(message: any, context?: string)
+Logger.error(message: any, stack?: string, context?: string):
+Logger.verbose(message: any, context?: string)
+Logger.warn(message: any, context?: string)
+```
+### Example
+```typescript
+import { Controller, Get, Logger } from '@nestjs/common';
+import { AppService } from './app.service';
+
+@Controller()
+export class AppController {
+  constructor(
+    private readonly appService: AppService,
+    private readonly logger: Logger,
+  ) {}
+
+  @Get()
+  getHello(): string {
+    this.logger.log('Calling getHello()', AppController.name);
+    this.logger.debug('Calling getHello()', AppController.name);
+    this.logger.verbose('Calling getHello()', AppController.name);
+    this.logger.warn('Calling getHello()', AppController.name);
+    try {
+      throw new Error()
+    } catch (e) {
+      this.logger.error('Calling getHello()', e.stack, AppController.name);
+    }
+    return this.appService.getHello();
+  }
+}
+```
+
 ## Contributing
 
 New features and bugfixes are always welcome! In order to contribute to this project, follow a few easy steps:
