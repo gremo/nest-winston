@@ -10,7 +10,10 @@
         "dbaeumer.vscode-eslint",
         "editorconfig.editorconfig",
         "kavod-io.vscode-jest-test-adapter"
-      ]
+      ],
+      "settings": {
+        "testExplorer.useNativeTesting": true
+      }
     }
   },
   "postCreateCommand": "npm install"
