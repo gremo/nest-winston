@@ -1,0 +1,17 @@
+{
+  "name": "Node.js",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "node",
+  "workspaceFolder": "/home/node/app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "davidanson.vscode-markdownlint",
+        "dbaeumer.vscode-eslint",
+        "editorconfig.editorconfig",
+        "kavod-io.vscode-jest-test-adapter"
+      ]
+    }
+  },
+  "postCreateCommand": "npm install"
+}
