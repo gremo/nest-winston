@@ -4,9 +4,9 @@
     "source.fixAll.markdownlint": true
   },
   "files.exclude": {
-    "**/.vscode": true,
-    "**/dist": true,
-    "**/node_modules": true
+    ".vscode/": true,
+    "dist/": true,
+    "node_modules/": true
   },
   "js/ts.implicitProjectConfig.experimentalDecorators": true
 }
