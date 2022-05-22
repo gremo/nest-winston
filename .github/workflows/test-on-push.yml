@@ -7,12 +7,16 @@ jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
+        node-version: ['10.13.0', '12', '14', '16']
+        nest-version: ['5', '6', '7', '']
         include:
-          - nest-version: "^5"
-          - nest-version: "^6"
-          - nest-version: "^7"
-          - nest-version: ""
+          - { node-version: '8.9.0', nest-version: '5' }
+          - { node-version: '8.9.0', nest-version: '6' }
+          - { node-version: '8.9.0', nest-version: '7' }
+          - { node-version: '8.9.0', nest-version: '' }
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -22,30 +26,35 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 10.13.0
+          node-version: ${{ matrix.node-version }}
 
-      - name: Install nestjs
-        env:
-          NEST_VERSION: ${{ matrix.nest-version }}
-        run: npm install @nestjs/common@$NEST_VERSION @nestjs/core@$NEST_VERSION @nestjs/testing@$NEST_VERSION
+      # nestjs 5.x-7.x supports rxjs 6.x
+      - name: Install rxjs
+        if: >-
+          startsWith(matrix.nest-version, '5') ||
+          startsWith(matrix.nest-version, '6') ||
+          startsWith(matrix.nest-version, '7')
+        run: npm install rxjs@^6
+
+      # node 8.x supports jest 25.x and ts-jest support typescript 3.x
+      - name: Install jest 25
+        if: startsWith(matrix.node-version, '8')
+        run: npm install jest@^25 ts-jest@^25 typescript@^3
+
+      # node 10.x supports jest 27.x
+      - name: Install jest 27
+        if: startsWith(matrix.node-version, '10')
+        run: npm install jest@^27 ts-jest@^27
 
       - name: Install platform-express
         if: >-
-          startsWith(matrix.nest-version, '^6') ||
-          startsWith(matrix.nest-version, '^7') ||
-          startsWith(matrix.nest-version, '^8')
-        env:
-          NEST_VERSION: ${{ matrix.nest-version }}
-        run: npm install @nestjs/platform-express@$NEST_VERSION
+          startsWith(matrix.nest-version, '6') ||
+          startsWith(matrix.nest-version, '7')
+        run: npm install @nestjs/platform-express@^${{ matrix.nest-version }}
 
-      - name: Install rxjs
-        if: >-
-          startsWith(matrix.nest-version, '^5') ||
-          startsWith(matrix.nest-version, '^6') ||
-          startsWith(matrix.nest-version, '^7')
-        env:
-          RXJS_VERSION: "^6"
-        run: npm install rxjs@$RXJS_VERSION
+      - name: Install nestjs
+        if: matrix.nest-version
+        run: npm install @nestjs/common@^${{ matrix.nest-version }} @nestjs/core@^${{ matrix.nest-version }} @nestjs/testing@^${{ matrix.nest-version }}
 
       - name: Test
         run: npm test
