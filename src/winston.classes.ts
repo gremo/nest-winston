@@ -24,6 +24,10 @@ export class WinstonLogger implements LoggerService {
   }
 
   public error(message: any, trace?: string, context?: string): any {
+    if (context === undefined) {
+      context = trace;
+      trace = undefined;
+    }
     context = context || this.context;
 
     if(message instanceof Error) {
