@@ -43,7 +43,8 @@ jobs:
       - name: Install platform-express
         if: >-
           startsWith(matrix.nest-version, '6') ||
-          startsWith(matrix.nest-version, '7')
+          startsWith(matrix.nest-version, '7') ||
+          startsWith(matrix.nest-version, '8')
         run: npm install @nestjs/platform-express@^${{ matrix.nest-version }}
 
       # nestjs 5.x-7.x supports rxjs 6.x
