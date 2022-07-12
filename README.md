@@ -298,4 +298,4 @@ Some notes about upgrading to a major or minor version.
 
 ### 1.6.x to 1.7
 
-- The expoted type `NestLikeConsoleFormatOptions` has slightly changed: `prettyPrint` is now optional and `colors` has been added
+- The exported type `NestLikeConsoleFormatOptions` has slightly changed: `prettyPrint` is now optional and `colors` has been added
