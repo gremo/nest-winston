@@ -35,6 +35,8 @@ npm install
 npm run start:dev
 ```
 
+If you want to upgrade to a major o minor version, have a look at the [upgrade](#upgrade) section.
+
 ## Quick start
 
 Import `WinstonModule` into the root `AppModule` and use the `forRoot()` method to configure it. This method accepts the same options object as [`createLogger()`](https://github.com/winstonjs/winston#usage) function from the winston package:
@@ -289,3 +291,11 @@ New features and bugfixes are always welcome! In order to contribute to this pro
 3. Create a branch `my-awesome-feature` and commit to it
 4. Run `npm run lint`, `npm run test` and `npm run build` and verify that they complete without errors
 5. Push `my-awesome-feature` branch to GitHub and open a [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)
+
+## Upgrade
+
+Some notes about upgrading to a major or minor version.
+
+### 1.6.x to 1.7
+
+- The expoted type `NestLikeConsoleFormatOptions` has slightly changed: `prettyPrint` is now optional and `colors` has been added
