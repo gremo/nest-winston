@@ -23,7 +23,10 @@ const nestLikeColorScheme: Record<string, (text: string) => string> = {
 
 const nestLikeConsoleFormat = (
   appName = 'NestWinston',
-  options?: NestLikeConsoleFormatOptions
+  options: NestLikeConsoleFormatOptions = {
+    colors: !process.env.NO_COLOR,
+    prettyPrint: false,
+  },
 ): Format =>
   format.printf(({ context, level, timestamp, message, ms, ...meta }) => {
     if ('undefined' !== typeof timestamp) {
@@ -39,23 +42,24 @@ const nestLikeConsoleFormat = (
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    const color = nestLikeColorScheme[level] || ((text: string): string => text);
+    const color = options.colors && nestLikeColorScheme[level] || ((text: string): string => text);
+    const yellow = options.colors ? clc.yellow : ((text: string): string => text);
 
     const stringifiedMeta = safeStringify(meta);
-    const formattedMeta = options?.prettyPrint
-      ? inspect(JSON.parse(stringifiedMeta), { colors: true, depth: null })
+    const formattedMeta = options.prettyPrint
+      ? inspect(JSON.parse(stringifiedMeta), { colors: options.colors, depth: null })
       : stringifiedMeta;
 
     return (
       `${color(`[${appName}]`)} ` +
-      `${clc.yellow(level.charAt(0).toUpperCase() + level.slice(1))}\t` +
+      `${yellow(level.charAt(0).toUpperCase() + level.slice(1))}\t` +
       ('undefined' !== typeof timestamp ? `${timestamp} ` : '') +
       ('undefined' !== typeof context
         ? `${clc.yellow('[' + context + ']')} `
         : '') +
       `${color(message)} - ` +
       `${formattedMeta}` +
-      ('undefined' !== typeof ms ? ` ${clc.yellow(ms)}` : '')
+      ('undefined' !== typeof ms ? ` ${yellow(ms)}` : '')
     );
   });
 

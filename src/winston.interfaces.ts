@@ -5,7 +5,8 @@ import { Type } from '@nestjs/common';
 export type WinstonModuleOptions = LoggerOptions;
 
 export type NestLikeConsoleFormatOptions = {
-  prettyPrint: boolean;
+  colors?: boolean;
+  prettyPrint?: boolean;
 };
 
 export interface WinstonModuleOptionsFactory {

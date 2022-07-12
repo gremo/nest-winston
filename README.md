@@ -201,7 +201,10 @@ Here is a summary of the three techniques explained above:
 
 ## Utilities
 
-The module also provides a custom Nest-like special formatter for console transports:
+The module also provides a custom Nest-like special formatter for console transports named `nestLike`. Supported options:
+
+- `colors`: enable console colors, defaults to `true`, unless `process.env.NO_COLOR` is set (same behaviour of Nest > 7.x)
+- `prettyPrint`: pretty format log metadata, defaults to `true`
 
 ```typescript
 import { Module } from '@nestjs/common';
@@ -216,7 +219,9 @@ import * as winston from 'winston';
           format: winston.format.combine(
             winston.format.timestamp(),
             winston.format.ms(),
-            nestWinstonModuleUtilities.format.nestLike('MyApp', { prettyPrint: true }),
+            nestWinstonModuleUtilities.format.nestLike('MyApp', {
+              // options
+            }),
           ),
         }),
         // other transports...
