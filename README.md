@@ -195,11 +195,11 @@ export class CatsController {
 
 Here is a summary of the three techniques explained above:
 
-| Injection token and typing                                                | Module config | Usage                                                                                  |
-| :------------------------------------------------------------------------ | :------------ | :------------------------------------------------------------------------------------- |
-| `WINSTON_MODULE_PROVIDER` <br> `Logger` from `winston`                    | Yes           | + Your application/message logging                                                     |
-| `WINSTON_MODULE_NEST_PROVIDER` <br> `LoggerService` from `@nestjs/common` | Yes           | + Your application/message logging <br> + Nest logger                                  |
-| *none* <br> `Logger` from `@nestjs/common`                                | No            | + Your application/message logging <br> + Nest logger <br> + Application bootstrapping |
+| Injection token                | Typing                                | Module config | Usage                                                                  |
+| :----------------------------- | :------------------------------------ | :------------ | :--------------------------------------------------------------------- |
+| `WINSTON_MODULE_PROVIDER`      | `Logger` from `winston`               | Yes           | + Your application/message logging
+| `WINSTON_MODULE_NEST_PROVIDER` | `LoggerService` from `@nestjs/common` | Yes           | + Your application/message logging <br> + Nest logger |
+| *none*                         | `Logger` from `@nestjs/common`        | No            | + Your application/message logging <br> + Nest logger <br> + Application bootstrapping |
 
 ## Utilities
 
@@ -237,7 +237,7 @@ export class AppModule {}
 
 ## Logger methods
 
-Note: The logger instance has different logger methods, and each takes different arguments. To make sure the logger is being formatted the same way across the board take note of the following:
+> **Note**: the logger instance has different logger methods, and each takes different arguments. To make sure the logger is being formatted the same way across the board take note of the following:
 
 ```typescript
 debug(message: any, context?: string)
@@ -298,4 +298,5 @@ Some notes about upgrading to a major or minor version.
 
 ### 1.6.x to 1.7
 
-- The exported type `NestLikeConsoleFormatOptions` has slightly changed: `prettyPrint` is now optional and `colors` has been added
+- The exported type `NestLikeConsoleFormatOptions` has slightly changed: `prettyPrint` is now optional and `colors` has been added.
+- The `nestLike` formatter has the new `colors` option: if not provided, colors will be used according to Nest "approach" (disabled if env variable `process.env.NO_COLOR` is defined). Before output was always colorized.
