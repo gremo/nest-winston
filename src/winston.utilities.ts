@@ -55,7 +55,7 @@ const nestLikeConsoleFormat = (
       `${yellow(level.charAt(0).toUpperCase() + level.slice(1))}\t` +
       ('undefined' !== typeof timestamp ? `${timestamp} ` : '') +
       ('undefined' !== typeof context
-        ? `${clc.yellow('[' + context + ']')} `
+        ? `${yellow('[' + context + ']')} `
         : '') +
       `${color(message)} - ` +
       `${formattedMeta}` +
