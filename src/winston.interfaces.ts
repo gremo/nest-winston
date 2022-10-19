@@ -1,8 +1,14 @@
-import { LoggerOptions } from 'winston';
+import { Logger, LoggerOptions } from 'winston';
 import { ModuleMetadata } from '@nestjs/common/interfaces';
 import { Type } from '@nestjs/common';
 
-export type WinstonModuleOptions = LoggerOptions;
+export type WinstonModuleOptions = LoggerOptions & {
+  /**
+   * Optional Winston instance to use
+   * This takes precedence on any other options provided
+   */
+  instance?: Logger;
+};
 
 export type NestLikeConsoleFormatOptions = {
   colors?: boolean;

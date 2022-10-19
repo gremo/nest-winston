@@ -158,7 +158,28 @@ async function bootstrap() {
 bootstrap();
 ```
 
-Change your main module to provide the `Logger` service:
+An alternative is to provide directly an instance of Winston in the options. This allows you to keep a reference to the instance and interact with it.
+
+```typescript
+import { createLogger } from 'winston';
+import { WinstonModule } from 'nest-winston';
+
+async function bootstrap() {
+  // createLogger of Winston
+  const instance = createLogger({
+    // options of Winston
+  });
+  const app = await NestFactory.create(AppModule, {
+    logger: WinstonModule.createLogger({
+      instance,
+    }),
+  });
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+The usage afterwards for both solutions is the same. First, change your main module to provide the `Logger` service:
 
 ```typescript
 import { Logger, Module } from '@nestjs/common';
