@@ -1,4 +1,4 @@
-import { Logger, LoggerOptions, createLogger } from 'winston';
+import { Logger, createLogger } from 'winston';
 import { Provider, Type } from '@nestjs/common';
 import { WINSTON_MODULE_NEST_PROVIDER, WINSTON_MODULE_OPTIONS, WINSTON_MODULE_PROVIDER } from './winston.constants';
 import { WinstonModuleAsyncOptions, WinstonModuleOptions, WinstonModuleOptionsFactory } from './winston.interfaces';
@@ -15,7 +15,7 @@ export function createWinstonProviders(loggerOpts: WinstonModuleOptions): Provid
   return [
     {
       provide: WINSTON_MODULE_PROVIDER,
-      useFactory: () => createLogger(loggerOpts),
+      useFactory: () => (loggerOpts.instance) || createLogger(loggerOpts),
     },
     {
       provide: WINSTON_MODULE_NEST_PROVIDER,
@@ -31,7 +31,7 @@ export function createWinstonAsyncProviders(options: WinstonModuleAsyncOptions):
   const providers: Provider[] = [
     {
       provide: WINSTON_MODULE_PROVIDER,
-      useFactory: (loggerOpts: LoggerOptions) => createLogger(loggerOpts),
+      useFactory: (loggerOpts: WinstonModuleOptions) => (loggerOpts.instance) || createLogger(loggerOpts),
       inject: [WINSTON_MODULE_OPTIONS],
     },
     {
