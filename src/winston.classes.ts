@@ -23,14 +23,17 @@ export class WinstonLogger implements LoggerService {
     return this.logger.info(message, { context });
   }
 
-  public error(message: any, trace?: string, context?: string): any {
-    context = context || this.context;
+  public error(message: any, context?: string): any;
+  public error(message: any, trace?: string, context?: string): any;
+  public error(message: any, traceOrContext?: string, context?: string): any {
+    const trace = context == null ? message.stack : traceOrContext;
+    context ||= traceOrContext || this.context;
 
     if(message instanceof Error) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { message: msg, name, stack, ...meta } = message;
 
-      return this.logger.error(msg, { context, stack: [trace || message.stack], value: message, ...meta });
+      return this.logger.error(msg, { context, stack: [trace], value: message, ...meta });
     }
 
     if('object' === typeof message) {
