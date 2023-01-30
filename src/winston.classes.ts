@@ -15,9 +15,9 @@ export class WinstonLogger implements LoggerService {
     context = context || this.context;
 
     if('object' === typeof message) {
-      const { message: msg, ...meta } = message;
+      const { message: msg, level = 'info', ...meta } = message;
 
-      return this.logger.info(msg as string, { context, value: message, ...meta });
+      return this.logger.log(level, msg as string, { context, value: message, ...meta });
     }
 
     return this.logger.info(message, { context });
