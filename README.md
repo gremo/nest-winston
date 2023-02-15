@@ -243,7 +243,8 @@ import * as winston from 'winston';
             winston.format.timestamp(),
             winston.format.ms(),
             nestWinstonModuleUtilities.format.nestLike('MyApp', {
-              // options
+              colors: true,
+              prettyPrint: true,
             }),
           ),
         }),
