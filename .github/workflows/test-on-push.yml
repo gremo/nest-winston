@@ -58,7 +58,7 @@ jobs:
       # node 8.x supports jest 25.x and ts-jest support typescript 3.x
       - name: Install jest 25
         if: startsWith(matrix.node-version, '8')
-        run: npm install jest@^25 ts-jest@^25 typescript@^3 @types/jest@^25
+        run: npm install jest@^25 ts-jest@^25 @types/jest@^25 typescript@^3 @types/node@^17 @types/babel__traverse@7.0.4
 
       # node 10.x supports jest 27.x but it doesn't work when installed this way
       - name: Install jest 26
