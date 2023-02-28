@@ -65,6 +65,14 @@ jobs:
         if: startsWith(matrix.node-version, '10')
         run: npm install jest@^26 ts-jest@^26 @types/jest@^26
 
+      # rimraf 4.x does not support node below 14.x
+      - name: Install rimraf
+        if: >-
+          startsWith(matrix.node-version, '8') ||
+          startsWith(matrix.node-version, '10') ||
+          startsWith(matrix.node-version, '12')
+        run: npm install rimraf@^3
+
       - name: Test
         run: npm test
 
