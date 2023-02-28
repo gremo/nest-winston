@@ -65,6 +65,11 @@ jobs:
         if: startsWith(matrix.node-version, '10')
         run: npm install jest@^26 ts-jest@^26 @types/jest@^26
 
+      # jest 29.x droppped support for node 12.x
+      - name: Install jest 28
+        if: startsWith(matrix.node-version, '12')
+        run: npm install jest@^28 ts-jest@^28 @types/jest@^28
+
       # rimraf 4.x does not support node below 14.x
       - name: Install rimraf
         if: >-
