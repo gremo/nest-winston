@@ -1,20 +1,37 @@
 {
-  "name": "Node.js",
-  "dockerComposeFile": "../docker-compose.yml",
-  "service": "node",
-  "workspaceFolder": "/home/node/app",
+  "image": "node:18",
+  "postCreateCommand": "npm update -g npm && npm install",
+  "mounts": [
+    {
+      "source": "${localWorkspaceFolderBasename}-dist",
+      "target": "${containerWorkspaceFolder}/dist",
+      "type": "volume"
+    },
+    {
+      "source": "${localWorkspaceFolderBasename}-node_modules",
+      "target": "${containerWorkspaceFolder}/node_modules",
+      "type": "volume"
+    }
+  ],
   "customizations": {
     "vscode": {
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+      },
+      "settings": {
+        "files.exclude": {
+          "dist/": true,
+          "node_modules/": true
+        },
+        "testExplorer.useNativeTesting": true
+      },
       "extensions": [
         "DavidAnson.vscode-markdownlint",
         "dbaeumer.vscode-eslint",
+        "donjayamanne.githistory",
         "editorconfig.editorconfig",
         "kavod-io.vscode-jest-test-adapter"
-      ],
-      "settings": {
-        "testExplorer.useNativeTesting": true
-      }
+      ]
     }
-  },
-  "postCreateCommand": "npm install"
+  }
 }
