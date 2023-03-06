@@ -17,7 +17,7 @@
   "scripts": {
     "lint": "eslint src/**/*.ts --ignore-pattern src/**/*.spec.ts",
     "test": "jest",
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf dist/*",
     "build": "tsc"
   },
   "dependencies": {
