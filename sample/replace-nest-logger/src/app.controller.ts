@@ -1,14 +1,16 @@
-import { Controller, Get, Inject, LoggerService } from '@nestjs/common';
+import { Controller, Get, Inject } from '@nestjs/common';
 import { AppService } from './app.service';
-import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+import { WinstonLogger, WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
 @Controller()
 export class AppController {
   constructor(
     private readonly appService: AppService,
     @Inject(WINSTON_MODULE_NEST_PROVIDER)
-    private readonly logger: LoggerService,
-  ) {}
+    private readonly logger: WinstonLogger,
+  ) {
+    this.logger.setContext('App Controller');
+  }
 
   @Get()
   getHello(): string {
