@@ -1,5 +1,5 @@
 import { Logger, LoggerOptions, createLogger } from 'winston';
-import { Provider, Type } from '@nestjs/common';
+import { Provider, Scope, Type } from '@nestjs/common';
 import { WINSTON_MODULE_NEST_PROVIDER, WINSTON_MODULE_OPTIONS, WINSTON_MODULE_PROVIDER } from './winston.constants';
 import { WinstonModuleAsyncOptions, WinstonModuleOptions, WinstonModuleOptionsFactory } from './winston.interfaces';
 import { WinstonLogger } from './winston.classes';
@@ -16,12 +16,14 @@ export function createWinstonProviders(loggerOpts: WinstonModuleOptions): Provid
     {
       provide: WINSTON_MODULE_PROVIDER,
       useFactory: () => createLogger(loggerOpts),
+      scope: Scope.TRANSIENT,
     },
     {
       provide: WINSTON_MODULE_NEST_PROVIDER,
       useFactory: (logger: Logger) => {
         return new WinstonLogger(logger);
       },
+      scope: Scope.TRANSIENT,
       inject: [WINSTON_MODULE_PROVIDER],
     },
   ];
@@ -32,6 +34,7 @@ export function createWinstonAsyncProviders(options: WinstonModuleAsyncOptions):
     {
       provide: WINSTON_MODULE_PROVIDER,
       useFactory: (loggerOpts: LoggerOptions) => createLogger(loggerOpts),
+      scope: Scope.TRANSIENT,
       inject: [WINSTON_MODULE_OPTIONS],
     },
     {
@@ -39,6 +42,7 @@ export function createWinstonAsyncProviders(options: WinstonModuleAsyncOptions):
       useFactory: (logger: Logger) => {
         return new WinstonLogger(logger);
       },
+      scope: Scope.TRANSIENT,
       inject: [WINSTON_MODULE_PROVIDER],
     },
   ];
@@ -50,6 +54,7 @@ export function createWinstonAsyncProviders(options: WinstonModuleAsyncOptions):
         provide: WINSTON_MODULE_OPTIONS,
         useFactory: async (optionsFactory: WinstonModuleOptionsFactory) =>
           await optionsFactory.createWinstonModuleOptions(),
+        scope: Scope.TRANSIENT,
         inject: [useClass],
       },
       {
@@ -64,6 +69,7 @@ export function createWinstonAsyncProviders(options: WinstonModuleAsyncOptions):
       {
         provide: WINSTON_MODULE_OPTIONS,
         useFactory: options.useFactory,
+        scope: Scope.TRANSIENT,
         inject: options.inject || [],
       },
     );

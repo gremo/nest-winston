@@ -12,8 +12,8 @@ describe('Winston module', function () {
       ],
     }).compile();
 
-    expect(rootModule.get(WINSTON_MODULE_PROVIDER)).toBeDefined();
-    expect(rootModule.get(WINSTON_MODULE_NEST_PROVIDER)).toBeDefined();
+    expect(await rootModule.resolve(WINSTON_MODULE_PROVIDER)).toBeDefined();
+    expect(await rootModule.resolve(WINSTON_MODULE_NEST_PROVIDER)).toBeDefined();
   });
 
   it('boots successfully asynchronously via useFactory', async function () {
@@ -41,8 +41,8 @@ describe('Winston module', function () {
     const app = rootModule.createNestApplication();
     await app.init();
 
-    expect(rootModule.get(WINSTON_MODULE_PROVIDER)).toBeDefined();
-    expect(rootModule.get(WINSTON_MODULE_NEST_PROVIDER)).toBeDefined();
+    expect(await rootModule.resolve(WINSTON_MODULE_PROVIDER)).toBeDefined();
+    expect(await rootModule.resolve(WINSTON_MODULE_NEST_PROVIDER)).toBeDefined();
   });
 
   it('boots successfully asynchronously via useClass', async function () {
@@ -66,7 +66,7 @@ describe('Winston module', function () {
     const app = rootModule.createNestApplication();
     await app.init();
 
-    expect(rootModule.get(WINSTON_MODULE_PROVIDER)).toBeDefined();
-    expect(rootModule.get(WINSTON_MODULE_NEST_PROVIDER)).toBeDefined();
+    expect(await rootModule.resolve(WINSTON_MODULE_PROVIDER)).toBeDefined();
+    expect(await rootModule.resolve(WINSTON_MODULE_NEST_PROVIDER)).toBeDefined();
   });
 });
