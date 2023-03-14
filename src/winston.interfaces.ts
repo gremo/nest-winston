@@ -13,6 +13,7 @@ export type WinstonModuleOptions = LoggerOptions & {
 export type NestLikeConsoleFormatOptions = {
   colors?: boolean;
   prettyPrint?: boolean;
+  transformMeta?: (meta: Record<string, any>) => Record<string, any>;
 };
 
 export interface WinstonModuleOptionsFactory {

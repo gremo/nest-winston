@@ -45,7 +45,14 @@ const nestLikeConsoleFormat = (
     const color = options.colors && nestLikeColorScheme[level] || ((text: string): string => text);
     const yellow = options.colors ? clc.yellow : ((text: string): string => text);
 
-    const stringifiedMeta = safeStringify(meta);
+    // Apply transformation function to meta data. If no transformation function
+    // is supplied, just remove the `value` property from the meta data.
+    // https://github.com/gremo/nest-winston/issues/626
+    const transformedMeta = options.transformMeta
+      ? options.transformMeta(meta)
+      : { ...meta, value: undefined };
+
+    const stringifiedMeta = safeStringify(transformedMeta);
     const formattedMeta = options.prettyPrint
       ? inspect(JSON.parse(stringifiedMeta), { colors: options.colors, depth: null })
       : stringifiedMeta;
