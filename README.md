@@ -35,7 +35,7 @@ npm install
 npm run start:dev
 ```
 
-If you want to upgrade to a major o minor version, have a look at the [upgrade](#upgrade) section.
+If you want to upgrade to a major or minor version, have a look at the [upgrade](#upgrade) section.
 
 ## Quick start
 
