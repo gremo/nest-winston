@@ -17,7 +17,7 @@ export class WinstonLogger implements LoggerService {
     if('object' === typeof message) {
       const { message: msg, level = 'info', ...meta } = message;
 
-      return this.logger.log(level, msg as string, { context, value: message, ...meta });
+      return this.logger.log(level, msg as string, { context, ...meta });
     }
 
     return this.logger.info(message, { context });
@@ -30,13 +30,13 @@ export class WinstonLogger implements LoggerService {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { message: msg, name, stack, ...meta } = message;
 
-      return this.logger.error(msg, { context, stack: [trace || message.stack], value: message, ...meta });
+      return this.logger.error(msg, { context, stack: [trace || message.stack], error: message, ...meta });
     }
 
     if('object' === typeof message) {
       const { message: msg, ...meta } = message;
 
-      return this.logger.error(msg as string, { context, stack: [trace], value: message, ...meta });
+      return this.logger.error(msg as string, { context, stack: [trace], ...meta });
     }
 
     return this.logger.error(message, { context, stack: [trace] });
@@ -48,7 +48,7 @@ export class WinstonLogger implements LoggerService {
     if('object' === typeof message) {
       const { message: msg, ...meta } = message;
 
-      return this.logger.warn(msg as string, { context, value: message, ...meta });
+      return this.logger.warn(msg as string, { context, ...meta });
     }
 
     return this.logger.warn(message, { context });
@@ -60,7 +60,7 @@ export class WinstonLogger implements LoggerService {
     if('object' === typeof message) {
       const { message: msg, ...meta } = message;
 
-      return this.logger.debug(msg as string, { context, value: message, ...meta });
+      return this.logger.debug(msg as string, { context, ...meta });
     }
 
     return this.logger.debug(message, { context });
@@ -72,7 +72,7 @@ export class WinstonLogger implements LoggerService {
     if('object' === typeof message) {
       const { message: msg, ...meta } = message;
 
-      return this.logger.verbose(msg as string, { context, value: message, ...meta });
+      return this.logger.verbose(msg as string, { context, ...meta });
     }
 
     return this.logger.verbose(message, { context });
