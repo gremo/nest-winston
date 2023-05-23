@@ -1,6 +1,6 @@
-import { Logger, LoggerOptions } from 'winston';
-import { ModuleMetadata } from '@nestjs/common/interfaces';
-import { Type } from '@nestjs/common';
+import { Scope, Type } from "@nestjs/common";
+import { ModuleMetadata } from "@nestjs/common/interfaces";
+import { Logger, LoggerOptions } from "winston";
 
 export type WinstonModuleOptions = LoggerOptions & {
   /**
@@ -8,6 +8,11 @@ export type WinstonModuleOptions = LoggerOptions & {
    * This takes precedence on any other options provided
    */
   instance?: Logger;
+
+  /**
+   * Injection Scope
+   */
+  scope?: Scope;
 };
 
 export type NestLikeConsoleFormatOptions = {
@@ -16,10 +21,13 @@ export type NestLikeConsoleFormatOptions = {
 };
 
 export interface WinstonModuleOptionsFactory {
-  createWinstonModuleOptions(): Promise<WinstonModuleOptions> | WinstonModuleOptions;
+  createWinstonModuleOptions():
+    | Promise<WinstonModuleOptions>
+    | WinstonModuleOptions;
 }
 
-export interface WinstonModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
+export interface WinstonModuleAsyncOptions
+  extends Pick<ModuleMetadata, "imports"> {
   useFactory?: (
     ...args: any[]
   ) => Promise<WinstonModuleOptions> | WinstonModuleOptions;
