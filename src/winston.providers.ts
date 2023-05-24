@@ -16,6 +16,7 @@ export function createWinstonProviders(loggerOpts: WinstonModuleOptions): Provid
     {
       provide: WINSTON_MODULE_PROVIDER,
       useFactory: () => createLogger(loggerOpts),
+      scope: loggerOpts.scope
     },
     {
       provide: WINSTON_MODULE_NEST_PROVIDER,
@@ -23,6 +24,7 @@ export function createWinstonProviders(loggerOpts: WinstonModuleOptions): Provid
         return new WinstonLogger(logger);
       },
       inject: [WINSTON_MODULE_PROVIDER],
+      scope: loggerOpts.scope
     },
   ];
 }
@@ -33,6 +35,7 @@ export function createWinstonAsyncProviders(options: WinstonModuleAsyncOptions):
       provide: WINSTON_MODULE_PROVIDER,
       useFactory: (loggerOpts: LoggerOptions) => createLogger(loggerOpts),
       inject: [WINSTON_MODULE_OPTIONS],
+      scope: options.scope
     },
     {
       provide: WINSTON_MODULE_NEST_PROVIDER,
@@ -40,6 +43,7 @@ export function createWinstonAsyncProviders(options: WinstonModuleAsyncOptions):
         return new WinstonLogger(logger);
       },
       inject: [WINSTON_MODULE_PROVIDER],
+      scope: options.scope
     },
   ];
 
@@ -51,6 +55,7 @@ export function createWinstonAsyncProviders(options: WinstonModuleAsyncOptions):
         useFactory: async (optionsFactory: WinstonModuleOptionsFactory) =>
           await optionsFactory.createWinstonModuleOptions(),
         inject: [useClass],
+        scope: options.scope
       },
       {
         provide: useClass,
@@ -65,6 +70,7 @@ export function createWinstonAsyncProviders(options: WinstonModuleAsyncOptions):
         provide: WINSTON_MODULE_OPTIONS,
         useFactory: options.useFactory,
         inject: options.inject || [],
+        scope: options.scope
       },
     );
   }

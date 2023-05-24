@@ -33,4 +33,5 @@ export interface WinstonModuleAsyncOptions
   ) => Promise<WinstonModuleOptions> | WinstonModuleOptions;
   inject?: any[];
   useClass?: Type<WinstonModuleOptionsFactory>;
+  scope?: Scope;
 }
