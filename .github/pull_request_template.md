@@ -20,7 +20,6 @@ Your checklist for this pull request.
 - [ ] I've read the [guidelines for contributing](https://github.com/gremo/nest-winsto/blob/main/CONTRIBUTING.md)
 - [ ] I've added necessary documentation (if appropriate)
 - [ ] I've ensured that my code additions do not fail linting or unit tests (if applicable)
-- [ ] I've ensured that all commits' message styles match [semantic commits](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
 
 #### Description
 
