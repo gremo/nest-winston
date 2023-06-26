@@ -2,23 +2,28 @@
   <a href="http://nestjs.com"><img alt="Nest Logo" src="https://nestjs.com/img/logo-small.svg" width="120" /></a>
 </p>
 
-<p align="center">
-  A <a href="https://github.com/nestjs/nest">Nest</a> module wrapper for <a href="https://github.com/winstonjs/winston">winston</a> logger.
-</p>
+<h1 align="center">
+  nest-winston
+</h1>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/nest-winston"><img alt="NPM version" src="https://img.shields.io/npm/v/nest-winston.svg" /></a>
-  <a href="https://www.npmjs.com/package/nest-winston"><img alt="NPM downloads" src="https://img.shields.io/npm/dw/nest-winston.svg" /></a>
+  <a href="https://www.npmjs.com/package/nest-winston"><img alt="NPM downloads" src="https://img.shields.io/npm/dw/nest-winston.svg"></a>
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/gremo/nest-winston">
   <a href="https://github.com/gremo/nest-winston/pulse"><img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/gremo/nest-winston"></a>
   <a href="https://github.com/gremo/nest-winston/graphs/contributors" alt="Contributors"><img src="https://img.shields.io/github/contributors/gremo/nest-winston" /></a>
   <a href="https://paypal.me/marcopolichetti" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/gremo/nest-winston/actions/workflows/test.yaml"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/gremo/nest-winston/Test"></a>
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/gremo/nest-winston/test.yaml">
   <a href="https://github.com/gremo/nest-winston/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/gremo/nest-winston.svg" /></a>
   <a href="https://github.com/gremo/nest-winston/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/gremo/nest-winston"></a>
   <img alt="Libraries.io dependency status for GitHub repo" src="https://img.shields.io/librariesio/github/gremo/nest-winston">
+</p>
+
+<p align="center">
+  A <a href="https://github.com/nestjs/nest">Nest</a> module wrapper for <a href="https://github.com/winstonjs/winston">winston</a> logger.
 </p>
 
 ## Installation
@@ -300,14 +305,6 @@ export class AppController {
 }
 ```
 
-## Contributing
-
-All types of contributions are encouraged and valued. See the [Contributing](CONTRIBUTING.md) guidelines, the community looks forward to your contributions!
-
-## License
-
-This project is released under the under terms of the [ISC License](LICENSE).
-
 ## Upgrade
 
 Some notes about upgrading to a major or minor version.
@@ -316,3 +313,11 @@ Some notes about upgrading to a major or minor version.
 
 - The exported type `NestLikeConsoleFormatOptions` has slightly changed: `prettyPrint` is now optional and `colors` has been added.
 - The `nestLike` formatter has the new `colors` option: if not provided, colors will be used according to Nest "approach" (disabled if env variable `process.env.NO_COLOR` is defined). Before output was always colorized.
+
+## Contributing
+
+All types of contributions are encouraged and valued. See the [Contributing](CONTRIBUTING.md) guidelines, the community looks forward to your contributions!
+
+## License
+
+This project is released under the under terms of the [ISC License](LICENSE).
