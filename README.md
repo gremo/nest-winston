@@ -335,6 +335,8 @@ Some notes about upgrading to a major or minor version.
 
 All types of contributions are encouraged and valued. See the [Contributing](CONTRIBUTING.md) guidelines, the community looks forward to your contributions!
 
+[![Contributors list](https://raw.githubusercontent.com/gremo/nest-winston/master/contributors.svg)](https://github.com/gremo/nest-winston/graphs/contributors)
+
 ## License
 
 This project is released under the under terms of the [ISC License](LICENSE).
