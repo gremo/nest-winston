@@ -1,6 +1,6 @@
 {
-  "image": "node:18",
-  "postCreateCommand": "npm update -g npm && npm install",
+  "image": "node:lts",
+  "postCreateCommand": "npm update -g npm",
   "mounts": [
     {
       "source": "${localWorkspaceFolderBasename}-dist",
@@ -15,10 +15,16 @@
   ],
   "customizations": {
     "vscode": {
-      "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-      },
       "settings": {
+        "editor.codeLens": true,
+        "editor.formatOnSave": true,
+        "editor.linkedEditing": false,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true,
+          "source.fixAll.markdownlint": true
+        },
+        "eslint.enable": true,
+        "eslint.format.enable": true,
         "files.exclude": {
           "dist/": true,
           "node_modules/": true
