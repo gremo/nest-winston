@@ -25,6 +25,9 @@
   A <a href="https://github.com/nestjs/nest">Nest</a> module wrapper for <a href="https://github.com/winstonjs/winston">winston</a> logger.
 </p>
 
+<!-- START doctoc -->
+<!-- END doctoc -->
+
 ## Installation
 
 ```bash
