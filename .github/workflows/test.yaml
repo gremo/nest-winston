@@ -2,6 +2,11 @@ name: Test
 
 on:
   push:
+    paths:
+      - '.github/workflows/test.yaml'
+      - 'src/**'
+      - 'package.json'
+      - 'tsconfig.json'
 
 jobs:
   test:

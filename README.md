@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/gremo/nest-winston/actions/workflows/test-on-push.yml"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/gremo/nest-winston/Test"></a>
+  <a href="https://github.com/gremo/nest-winston/actions/workflows/test.yaml"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/gremo/nest-winston/Test"></a>
   <a href="https://github.com/gremo/nest-winston/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/gremo/nest-winston.svg" /></a>
   <a href="https://github.com/gremo/nest-winston/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/gremo/nest-winston"></a>
   <img alt="Libraries.io dependency status for GitHub repo" src="https://img.shields.io/librariesio/github/gremo/nest-winston">
