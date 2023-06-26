@@ -9,17 +9,16 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/nest-winston"><img alt="NPM version" src="https://img.shields.io/npm/v/nest-winston.svg" /></a>
   <a href="https://www.npmjs.com/package/nest-winston"><img alt="NPM downloads" src="https://img.shields.io/npm/dw/nest-winston.svg"></a>
-  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/gremo/nest-winston">
   <a href="https://github.com/gremo/nest-winston/pulse"><img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/gremo/nest-winston"></a>
   <a href="https://github.com/gremo/nest-winston/graphs/contributors" alt="Contributors"><img src="https://img.shields.io/github/contributors/gremo/nest-winston" /></a>
   <a href="https://paypal.me/marcopolichetti" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
 </p>
 
 <p align="center">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/gremo/nest-winston">
   <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/gremo/nest-winston/test.yaml">
   <a href="https://github.com/gremo/nest-winston/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/gremo/nest-winston.svg" /></a>
   <a href="https://github.com/gremo/nest-winston/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/gremo/nest-winston"></a>
-  <img alt="Libraries.io dependency status for GitHub repo" src="https://img.shields.io/librariesio/github/gremo/nest-winston">
 </p>
 
 <p align="center">
