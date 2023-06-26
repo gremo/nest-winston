@@ -25,8 +25,23 @@
   A <a href="https://github.com/nestjs/nest">Nest</a> module wrapper for <a href="https://github.com/winstonjs/winston">winston</a> logger.
 </p>
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Installation](#installation)
+- [Quick start](#quick-start)
+- [Async configuration](#async-configuration)
+- [Replacing the Nest logger](#replacing-the-nest-logger)
+- [Replacing the Nest logger (also for bootstrapping)](#replacing-the-nest-logger-also-for-bootstrapping)
+- [Injection and usage summary](#injection-and-usage-summary)
+- [Utilities](#utilities)
+- [Logger methods](#logger-methods)
+- [Upgrade](#upgrade)
+- [Contributing](#contributing)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Installation
 
