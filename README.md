@@ -130,7 +130,7 @@ With the above code, Nest will create a new instance of `WinstonConfigService` a
 
 ## Replacing the Nest logger
 
-This module also provides the `WinstonLogger` class (custom implementation of the [`LoggerService`](https://github.com/nestjs/nest/blob/master/packages/common/services/logger.service.ts#L10) interface) to be used by Nest for system logging. This will ensure consistent behavior and formatting across both Nest system logging and your application event/message logging.
+This module also provides the `WinstonLogger` class (custom implementation of the [`LoggerService`](https://github.com/nestjs/nest/blob/main/packages/common/services/logger.service.ts#L10) interface) to be used by Nest for system logging. This will ensure consistent behavior and formatting across both Nest system logging and your application event/message logging.
 
 Change your `main.ts` as shown below:
 
@@ -336,7 +336,7 @@ Some notes about upgrading to a major or minor version.
 
 All types of contributions are encouraged and valued. See the [Contributing](CONTRIBUTING.md) guidelines, the community looks forward to your contributions!
 
-[![Contributors list](https://raw.githubusercontent.com/gremo/nest-winston/master/contributors.svg)](https://github.com/gremo/nest-winston/graphs/contributors)
+[![Contributors list](https://raw.githubusercontent.com/gremo/nest-winston/main/contributors.svg)](https://github.com/gremo/nest-winston/graphs/contributors)
 
 ## License
 

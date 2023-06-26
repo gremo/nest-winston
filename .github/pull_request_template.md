@@ -17,7 +17,7 @@ Your checklist for this pull request.
 
 *Put an `x` in the boxes that apply (you can also fill these out after creating the PR).*
 
-- [ ] I've read the [guidelines for contributing](https://github.com/gremo/nest-winsto/blob/master/CONTRIBUTING.md)
+- [ ] I've read the [guidelines for contributing](https://github.com/gremo/nest-winsto/blob/main/CONTRIBUTING.md)
 - [ ] I've added necessary documentation (if appropriate)
 - [ ] I've ensured that my code additions do not fail linting or unit tests (if applicable)
 
