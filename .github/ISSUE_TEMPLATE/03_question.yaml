@@ -1,0 +1,16 @@
+name: ❓Question and help
+description: If you have any question or need help 🛟
+title: '[Question]: '
+labels: ['documentation', 'question']
+body:
+    - type: markdown
+      attributes:
+          value: |
+              **Thanks :heart: for taking the time to fill out this question!** We kindly ask that you search to see if an issue [already exists](https://github.com/gremo/nest-winston/issues?q=is%3Aissue+label%3Adocumentation,question+sort%3Acreated-desc+) for the question.
+
+    - type: textarea
+      attributes:
+          label: Description
+          description: A clear and concise summary of your question.
+      validations:
+          required: true

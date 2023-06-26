@@ -1,0 +1,37 @@
+name: 🐞 Bug report
+description: If something isn't working 🔧
+title: '[Bug]: '
+labels: ['bug']
+body:
+    - type: markdown
+      attributes:
+          value: |
+              **Thanks ❤️ for taking the time to fill out this bug report!** We kindly ask that you search to see if an issue [already exists](https://github.com/gremo/nest-winston/issues?q=is%3Aissue+label%3Abug+sort%3Acreated-desc+) for the bug.
+
+    - type: input
+      attributes:
+          label: Version of Nest?
+          description: Please verify the output of the command `npm list @nestjs/common` and provide the version here.
+      validations:
+          required: true
+
+    - type: input
+      attributes:
+          label: Version of `nest-winston` package?
+          description: Please verify the output of the command `npm list nest-winston` and provide the version here.
+      validations:
+          required: true
+
+    - type: input
+      attributes:
+          label: Version of `winston` package?
+          description: Please verify the output of the command `npm list winston` and provide the version here.
+      validations:
+          required: true
+
+    - type: textarea
+      attributes:
+          label: Bug description
+          description: A clear and concise description of the issue you're experiencing and the steps to reproduce.
+      validations:
+          required: true
