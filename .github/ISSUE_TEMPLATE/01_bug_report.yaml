@@ -17,14 +17,14 @@ body:
 
     - type: input
       attributes:
-          label: Version of `nest-winston` package?
+          label: Version of nest-winston package?
           description: Please verify the output of the command `npm list nest-winston` and provide the version here.
       validations:
           required: true
 
     - type: input
       attributes:
-          label: Version of `winston` package?
+          label: Version of winston package?
           description: Please verify the output of the command `npm list winston` and provide the version here.
       validations:
           required: true
