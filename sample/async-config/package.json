@@ -24,7 +24,7 @@
     "@nestjs/config": "^0.6.3",
     "@nestjs/core": "^7.6.15",
     "@nestjs/platform-express": "^7.6.15",
-    "nest-winston": "^1.4.1",
+    "nest-winston": "^1.4.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.7",
