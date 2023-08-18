@@ -5,6 +5,9 @@ import { WinstonModuleAsyncOptions, WinstonModuleOptions, WinstonModuleOptionsFa
 import { WinstonLogger } from './winston.classes';
 
 export function createNestWinstonLogger(loggerOpts: WinstonModuleOptions): WinstonLogger {
+  if (loggerOpts.instance) {
+    return new WinstonLogger(loggerOpts.instance);
+  }
   return new WinstonLogger(createLogger(loggerOpts));
 }
 

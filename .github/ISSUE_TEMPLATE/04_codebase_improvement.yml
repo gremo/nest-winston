@@ -1,0 +1,23 @@
+name: 🤓 Codebase improvement
+description: If you want to improve codebase quality and maintainability 👨‍💻
+title: '[Codebase]: '
+labels: ['enhancement']
+body:
+    - type: markdown
+      attributes:
+          value: |
+              **Thanks :heart: for taking the time to fill out this codebase improvement!** We kindly ask that you search to see if an issue [already exists](https://github.com/gremo/nest-winston/issues?q=is%3Aissue+label%3Aenhancement+sort%3Acreated-desc+) for the improvement.
+
+    - type: textarea
+      attributes:
+          label: Description
+          description: |
+              A clear and concise description of the improvement you suggest.
+      validations:
+          required: true
+
+    - type: checkboxes
+      attributes:
+          label: Are you willing to contribute it?
+          options:
+              - label: I can work on a pull request to implement this improvement

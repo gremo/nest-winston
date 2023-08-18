@@ -1,0 +1,43 @@
+{
+  "image": "node:lts",
+  "postCreateCommand": "npm update -g npm",
+  "mounts": [
+    {
+      "source": "${localWorkspaceFolderBasename}-dist",
+      "target": "${containerWorkspaceFolder}/dist",
+      "type": "volume"
+    },
+    {
+      "source": "${localWorkspaceFolderBasename}-node_modules",
+      "target": "${containerWorkspaceFolder}/node_modules",
+      "type": "volume"
+    }
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.codeLens": true,
+        "editor.formatOnSave": true,
+        "editor.linkedEditing": false,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true,
+          "source.fixAll.markdownlint": true
+        },
+        "eslint.enable": true,
+        "eslint.format.enable": true,
+        "files.exclude": {
+          "dist/": true,
+          "node_modules/": true
+        },
+        "testExplorer.useNativeTesting": true
+      },
+      "extensions": [
+        "DavidAnson.vscode-markdownlint",
+        "dbaeumer.vscode-eslint",
+        "donjayamanne.githistory",
+        "editorconfig.editorconfig",
+        "kavod-io.vscode-jest-test-adapter"
+      ]
+    }
+  }
+}

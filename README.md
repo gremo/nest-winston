@@ -1,19 +1,47 @@
 <p align="center">
-  <a href="http://nestjs.com"><img src="https://nestjs.com/img/logo_text.svg" alt="Nest Logo" width="320" /></a>
+  <a href="http://nestjs.com"><img alt="Nest Logo" src="https://nestjs.com/img/logo-small.svg" width="120"></a>
+</p>
+
+<h1 align="center">
+  nest-winston
+</h1>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/nest-winston"><img alt="NPM version" src="https://img.shields.io/npm/v/nest-winston.svg"></a>
+  <a href="https://www.npmjs.com/package/nest-winston"><img alt="NPM downloads" src="https://img.shields.io/npm/dw/nest-winston.svg"></a>
+  <a href="https://github.com/gremo/nest-winston/pulse"><img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/gremo/nest-winston"></a>
+  <a href="https://github.com/gremo/nest-winston/graphs/contributors" alt="Contributors"><img src="https://img.shields.io/github/contributors/gremo/nest-winston"></a>
+  <a href="https://paypal.me/marcopolichetti" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"></a>
+</p>
+
+<p align="center">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/gremo/nest-winston">
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/gremo/nest-winston/test.yaml">
+  <a href="https://github.com/gremo/nest-winston/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/gremo/nest-winston.svg"></a>
+  <a href="https://github.com/gremo/nest-winston/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/gremo/nest-winston"></a>
 </p>
 
 <p align="center">
   A <a href="https://github.com/nestjs/nest">Nest</a> module wrapper for <a href="https://github.com/winstonjs/winston">winston</a> logger.
 </p>
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/nest-winston"><img src="https://img.shields.io/npm/v/nest-winston.svg" alt="NPM version" /></a>
-  <a href="https://www.npmjs.com/package/nest-winston"><img src="https://img.shields.io/npm/dw/nest-winston.svg" alt="NPM downloads" /></a>
-  <a href="https://travis-ci.com/gremo/nest-winston"><img src="https://travis-ci.com/gremo/nest-winston.svg?branch=master" alt="Travis build" /></a>
-  <a href="https://github.com/gremo/nest-winston/issues"><img src="https://img.shields.io/github/issues/gremo/nest-winston.svg" alt="GitHub issues" /></a>
-  <a href="https://david-dm.org/gremo/nest-winston"><img src="https://img.shields.io/david/gremo/nest-winston.svg" alt="dependencies status"></a>
-  <a href="https://david-dm.org/gremo/nest-winston?type=dev"><img src="https://david-dm.org/gremo/nest-winston/dev-status.svg" alt="devDependencies status" /></a>
-</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Installation](#installation)
+- [Quick start](#quick-start)
+- [Async configuration](#async-configuration)
+- [Replacing the Nest logger](#replacing-the-nest-logger)
+- [Replacing the Nest logger (also for bootstrapping)](#replacing-the-nest-logger-also-for-bootstrapping)
+- [Injection and usage summary](#injection-and-usage-summary)
+- [Utilities](#utilities)
+- [Logger methods](#logger-methods)
+- [Upgrade](#upgrade)
+- [Contributing](#contributing)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Installation
 
@@ -28,6 +56,8 @@ cd sample/quick-start
 npm install
 npm run start:dev
 ```
+
+If you want to upgrade to a major or minor version, have a look at the [upgrade](#upgrade) section.
 
 ## Quick start
 
@@ -99,7 +129,7 @@ With the above code, Nest will create a new instance of `WinstonConfigService` a
 
 ## Replacing the Nest logger
 
-This module also provides the `WinstonLogger` class (custom implementation of the [`LoggerService`](https://github.com/nestjs/nest/blob/master/packages/common/services/logger.service.ts#L10) interface) to be used by Nest for system logging. This will ensure consistent behavior and formatting across both Nest system logging and your application event/message logging.
+This module also provides the `WinstonLogger` class (custom implementation of the [`LoggerService`](https://github.com/nestjs/nest/blob/main/packages/common/services/logger.service.ts#L10) interface) to be used by Nest for system logging. This will ensure consistent behavior and formatting across both Nest system logging and your application event/message logging.
 
 Change your `main.ts` as shown below:
 
@@ -150,7 +180,28 @@ async function bootstrap() {
 bootstrap();
 ```
 
-Change your main module to provide the `Logger` service:
+An alternative is to provide directly an instance of Winston in the options. This allows you to keep a reference to the instance and interact with it.
+
+```typescript
+import { createLogger } from 'winston';
+import { WinstonModule } from 'nest-winston';
+
+async function bootstrap() {
+  // createLogger of Winston
+  const instance = createLogger({
+    // options of Winston
+  });
+  const app = await NestFactory.create(AppModule, {
+    logger: WinstonModule.createLogger({
+      instance,
+    }),
+  });
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+The usage afterwards for both solutions is the same. First, change your main module to provide the `Logger` service:
 
 ```typescript
 import { Logger, Module } from '@nestjs/common';
@@ -187,15 +238,18 @@ export class CatsController {
 
 Here is a summary of the three techniques explained above:
 
-| Injection token and typing                                                | Module config | Usage                                                                                  |
-| :------------------------------------------------------------------------ | :------------ | :------------------------------------------------------------------------------------- |
-| `WINSTON_MODULE_PROVIDER` <br> `Logger` from `winston`                    | Yes           | + Your application/message logging                                                     |
-| `WINSTON_MODULE_NEST_PROVIDER` <br> `LoggerService` from `@nestjs/common` | Yes           | + Your application/message logging <br> + Nest logger                                  |
-| *none* <br> `Logger` from `@nestjs/common`                                | No            | + Your application/message logging <br> + Nest logger <br> + Application bootstrapping |
+| Injection token                | Typing                                | Module config | Usage                                                                  |
+| :----------------------------- | :------------------------------------ | :------------ | :--------------------------------------------------------------------- |
+| `WINSTON_MODULE_PROVIDER`      | `Logger` from `winston`               | Yes           | + Your application/message logging
+| `WINSTON_MODULE_NEST_PROVIDER` | `LoggerService` from `@nestjs/common` | Yes           | + Your application/message logging <br> + Nest logger |
+| *none*                         | `Logger` from `@nestjs/common`        | No            | + Your application/message logging <br> + Nest logger <br> + Application bootstrapping |
 
 ## Utilities
 
-The module also provides a custom Nest-like special formatter for console transports:
+The module also provides a custom Nest-like special formatter for console transports named `nestLike`. Supported options:
+
+- `colors`: enable console colors, defaults to `true`, unless `process.env.NO_COLOR` is set (same behaviour of Nest > 7.x)
+- `prettyPrint`: pretty format log metadata, defaults to `true`
 
 ```typescript
 import { Module } from '@nestjs/common';
@@ -210,7 +264,10 @@ import * as winston from 'winston';
           format: winston.format.combine(
             winston.format.timestamp(),
             winston.format.ms(),
-            nestWinstonModuleUtilities.format.nestLike('MyApp', { prettyPrint: true }),
+            nestWinstonModuleUtilities.format.nestLike('MyApp', {
+              colors: true,
+              prettyPrint: true,
+            }),
           ),
         }),
         // other transports...
@@ -222,12 +279,64 @@ import * as winston from 'winston';
 export class AppModule {}
 ```
 
+## Logger methods
+
+> **Note**: the logger instance has different logger methods, and each takes different arguments. To make sure the logger is being formatted the same way across the board take note of the following:
+
+```typescript
+debug(message: any, context?: string)
+log(message: any, context?: string)
+error(message: any, stack?: string, context?: string)
+verbose(message: any, context?: string)
+warn(message: any, context?: string)
+```
+
+Example:
+
+```typescript
+import { Controller, Get, Logger } from '@nestjs/common';
+import { AppService } from './app.service';
+
+@Controller()
+export class AppController {
+  constructor(
+    private readonly appService: AppService,
+    private readonly logger: Logger,
+  ) {}
+
+  @Get()
+  getHello(): string {
+    this.logger.log('Calling getHello()', AppController.name);
+    this.logger.debug('Calling getHello()', AppController.name);
+    this.logger.verbose('Calling getHello()', AppController.name);
+    this.logger.warn('Calling getHello()', AppController.name);
+
+    try {
+      throw new Error()
+    } catch (e) {
+      this.logger.error('Calling getHello()', e.stack, AppController.name);
+    }
+
+    return this.appService.getHello();
+  }
+}
+```
+
+## Upgrade
+
+Some notes about upgrading to a major or minor version.
+
+### 1.6.x to 1.7
+
+- The exported type `NestLikeConsoleFormatOptions` has slightly changed: `prettyPrint` is now optional and `colors` has been added.
+- The `nestLike` formatter has the new `colors` option: if not provided, colors will be used according to Nest "approach" (disabled if env variable `process.env.NO_COLOR` is defined). Before output was always colorized.
+
 ## Contributing
 
-New features and bugfixes are always welcome! In order to contribute to this project, follow a few easy steps:
+All types of contributions are encouraged and valued. See the [Contributing](CONTRIBUTING.md) guidelines, the community looks forward to your contributions!
 
-1. [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) this repository, clone it on your machine and run `npm install`
-2. Open your local repository with [Visual Studio Code](https://code.visualstudio.com/) and install all the suggested extensions
-3. Create a branch `my-awesome-feature` and commit to it
-4. Run `npm run lint`, `npm run test` and `npm run build` and verify that they complete without errors
-5. Push `my-awesome-feature` branch to GitHub and open a [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)
+[![Contributors list](https://raw.githubusercontent.com/gremo/nest-winston/main/contributors.svg)](https://github.com/gremo/nest-winston/graphs/contributors)
+
+## License
+
+This project is released under the under terms of the [ISC License](LICENSE).

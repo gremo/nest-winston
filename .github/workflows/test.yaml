@@ -1,0 +1,101 @@
+name: Test
+
+on:
+  push:
+    paths:
+      - '.github/workflows/test.yaml'
+      - 'src/**'
+      - 'package.json'
+      - 'tsconfig.json'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['16', '18']
+        nest-version: ['5', '6', '7', '8', '9', '']
+        include:
+          - { node-version: '8.9.0', nest-version: '5' }
+          - { node-version: '8.9.0', nest-version: '6' }
+          - { node-version: '8.9.0', nest-version: '7' }
+          - { node-version: '10', nest-version: '5' }
+          - { node-version: '10', nest-version: '6' }
+          - { node-version: '10', nest-version: '7' }
+          - { node-version: '10', nest-version: '8' }
+          - { node-version: '12', nest-version: '5' }
+          - { node-version: '12', nest-version: '6' }
+          - { node-version: '12', nest-version: '7' }
+          - { node-version: '12', nest-version: '8' }
+          - { node-version: '12', nest-version: '9' }
+          - { node-version: '14', nest-version: '5' }
+          - { node-version: '14', nest-version: '6' }
+          - { node-version: '14', nest-version: '7' }
+          - { node-version: '14', nest-version: '8' }
+          - { node-version: '14', nest-version: '9' }
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: |
+          npm config set legacy-peer-deps true
+          npm install
+
+      - name: Install nestjs
+        if: matrix.nest-version
+        run: npm install @nestjs/common@^${{ matrix.nest-version }} @nestjs/core@^${{ matrix.nest-version }} @nestjs/testing@^${{ matrix.nest-version }}
+
+      - name: Install platform-express
+        if: >-
+          startsWith(matrix.nest-version, '6') ||
+          startsWith(matrix.nest-version, '7') ||
+          startsWith(matrix.nest-version, '8') ||
+          startsWith(matrix.nest-version, '9')
+        run: npm install @nestjs/platform-express@^${{ matrix.nest-version }}
+
+      # nestjs 5.x-7.x supports rxjs 6.x
+      - name: Install rxjs
+        if: >-
+          startsWith(matrix.nest-version, '5') ||
+          startsWith(matrix.nest-version, '6') ||
+          startsWith(matrix.nest-version, '7')
+        run: npm install rxjs@^6
+
+      # node 8.x supports jest 25.x and ts-jest support typescript 3.x
+      - name: Install jest 25
+        if: startsWith(matrix.node-version, '8')
+        run: npm install jest@^25 ts-jest@^25 @types/jest@^25 typescript@^3 @types/node@^17 @types/babel__traverse@7.0.4
+
+      # node 10.x supports jest 27.x but it doesn't work when installed this way
+      - name: Install jest 26
+        if: startsWith(matrix.node-version, '10')
+        run: npm install jest@^26 ts-jest@^26 @types/jest@^26
+
+      # jest 29.x droppped support for node 12.x
+      - name: Install jest 28
+        if: startsWith(matrix.node-version, '12')
+        run: npm install jest@^28 ts-jest@^28 @types/jest@^28
+
+      # rimraf 4.x does not support node below 14.x
+      - name: Install rimraf
+        if: >-
+          startsWith(matrix.node-version, '8') ||
+          startsWith(matrix.node-version, '10') ||
+          startsWith(matrix.node-version, '12')
+        run: npm install rimraf@^3
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build

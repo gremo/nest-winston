@@ -5,13 +5,11 @@
     ":automergePatch",
     ":disablePeerDependencies",
     ":pinDevDependencies",
-    ":semanticCommitsDisabled"
+    ":semanticCommitsDisabled",
+    "docker:disable"
   ],
+  "ignorePaths": ["sample/**"],
   "packageRules": [
-    {
-      "matchPaths": ["package.json"],
-      "enabled": false
-    },
     {
       "matchFiles": ["package.json"],
       "enabled": true

@@ -1,8 +1,7 @@
 {
   "recommendations": [
-    "davidanson.vscode-markdownlint",
+    "DavidAnson.vscode-markdownlint",
     "dbaeumer.vscode-eslint",
-    "editorconfig.editorconfig",
-    "kavod-io.vscode-jest-test-adapter"
+    "editorconfig.editorconfig"
   ]
 }

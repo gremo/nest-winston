@@ -15,10 +15,10 @@ export class WinstonLogger implements LoggerService {
   public log(message: LoggerMessage, context?: string): any {
     context = context || this.context;
 
-    if('object' === typeof message) {
-      const { message: msg, ...meta } = message;
+    if(!!message && 'object' === typeof message) {
+      const { message: msg, level = 'info', ...meta } = message;
 
-      return this.logger.info(msg as string, { context, ...meta });
+      return this.logger.log(level, msg as string, { context, ...meta });
     }
 
     return this.logger.info(message, { context });
@@ -32,10 +32,10 @@ export class WinstonLogger implements LoggerService {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { message: msg, name, stack, ...meta } = message;
 
-      return this.logger.error(msg, { context, stack: [trace || message.stack], ...meta });
+      return this.logger.error(msg, { context, stack: [trace || message.stack], error: message, ...meta });
     }
 
-    if('object' === typeof message) {
+    if(!!message && 'object' === typeof message) {
       const { message: msg, ...meta } = message;
 
       return this.logger.error(msg as string, { context, stack: [trace], ...meta });
@@ -47,7 +47,7 @@ export class WinstonLogger implements LoggerService {
   public warn(message: LoggerMessage, context?: string): any {
     context = context || this.context;
 
-    if('object' === typeof message) {
+    if(!!message && 'object' === typeof message) {
       const { message: msg, ...meta } = message;
 
       return this.logger.warn(msg as string, { context, ...meta });
@@ -59,7 +59,7 @@ export class WinstonLogger implements LoggerService {
   public debug?(message: LoggerMessage, context?: string): any {
     context = context || this.context;
 
-    if('object' === typeof message) {
+    if(!!message && 'object' === typeof message) {
       const { message: msg, ...meta } = message;
 
       return this.logger.debug(msg as string, { context, ...meta });
@@ -71,12 +71,16 @@ export class WinstonLogger implements LoggerService {
   public verbose?(message: LoggerMessage, context?: string): any {
     context = context || this.context;
 
-    if('object' === typeof message) {
+    if(!!message && 'object' === typeof message) {
       const { message: msg, ...meta } = message;
 
       return this.logger.verbose(msg as string, { context, ...meta });
     }
 
     return this.logger.verbose(message, { context });
+  }
+
+  public getWinstonLogger(): Logger {
+    return this.logger;
   }
 }
