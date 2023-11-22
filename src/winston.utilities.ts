@@ -14,7 +14,7 @@ const clc = {
 };
 
 const nestLikeColorScheme: Record<string, (text: string) => string> = {
-  info: clc.green,
+  log: clc.green,
   error: clc.red,
   warn: clc.yellow,
   debug: clc.magentaBright,
@@ -29,6 +29,10 @@ const nestLikeConsoleFormat = (
   },
 ): Format =>
   format.printf(({ context, level, timestamp, message, ms, ...meta }) => {
+    if ('info' === level) {
+      level = 'log';
+    }
+
     if ('undefined' !== typeof timestamp) {
       // Only format the timestamp to a locale representation if it's ISO 8601 format. Any format
       // that is not a valid date string will throw, just ignore it (it will be printed as-is).
@@ -51,9 +55,9 @@ const nestLikeConsoleFormat = (
       : stringifiedMeta;
 
     return (
-      `${color(`[${appName}]`)} ` +
-      `${yellow(level.charAt(0).toUpperCase() + level.slice(1))}\t` +
+      color(`[${appName}] ${String(process.pid).padEnd(6)} - `) +
       ('undefined' !== typeof timestamp ? `${timestamp} ` : '') +
+      `${color(level.toUpperCase().padStart(7))}\t` +
       ('undefined' !== typeof context
         ? `${yellow('[' + context + ']')} `
         : '') +
