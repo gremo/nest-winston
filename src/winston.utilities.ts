@@ -57,7 +57,7 @@ const nestLikeConsoleFormat = (
     return (
       color(`[${appName}] ${String(process.pid).padEnd(6)} - `) +
       ('undefined' !== typeof timestamp ? `${timestamp} ` : '') +
-      `${color(level.toUpperCase().padStart(7))}\t` +
+      `${color(level.toUpperCase().padStart(7))} ` +
       ('undefined' !== typeof context
         ? `${yellow('[' + context + ']')} `
         : '') +
