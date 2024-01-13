@@ -287,6 +287,7 @@ export class AppModule {}
 debug(message: any, context?: string)
 log(message: any, context?: string)
 error(message: any, stack?: string, context?: string)
+fatal(message: any, stack?: string, context?: string)
 verbose(message: any, context?: string)
 warn(message: any, context?: string)
 ```
