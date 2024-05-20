@@ -26,6 +26,7 @@ const nestLikeConsoleFormat = (
   options: NestLikeConsoleFormatOptions = {
     colors: !process.env.NO_COLOR,
     prettyPrint: false,
+    processId: true,
   },
 ): Format =>
   format.printf(({ context, level, timestamp, message, ms, ...meta }) => {
@@ -55,7 +56,7 @@ const nestLikeConsoleFormat = (
       : stringifiedMeta;
 
     return (
-      color(`[${appName}] ${String(process.pid).padEnd(6)} - `) +
+      color(`[${appName}] ${options.processId ? String(process.pid).padEnd(6) + ' ' : ''}- `) +
       ('undefined' !== typeof timestamp ? `${timestamp} ` : '') +
       `${color(level.toUpperCase().padStart(7))} ` +
       ('undefined' !== typeof context
