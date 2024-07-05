@@ -251,6 +251,7 @@ The module also provides a custom Nest-like special formatter for console transp
 - `colors`: enable console colors, defaults to `true`, unless `process.env.NO_COLOR` is set (same behaviour of Nest > 7.x)
 - `prettyPrint`: pretty format log metadata, defaults to `true`
 - `processId`: includes the Node Process ID (`process.pid`) in the output, defaults to `true`
+- `appName`: includes the provided application name in the output, defaults to `true`
 
 ```typescript
 import { Module } from '@nestjs/common';
@@ -268,7 +269,8 @@ import * as winston from 'winston';
             nestWinstonModuleUtilities.format.nestLike('MyApp', {
               colors: true,
               prettyPrint: true,
-              processId: true
+              processId: true,
+              appName: true,
             }),
           ),
         }),
