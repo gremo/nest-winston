@@ -1,9 +1,9 @@
-name: Test
+name: CI
 
 on:
   push:
     paths:
-      - '.github/workflows/test.yaml'
+      - '.github/workflows/ci.yaml'
       - 'src/**'
       - 'package.json'
       - 'tsconfig.json'
@@ -68,11 +68,6 @@ jobs:
           startsWith(matrix.nest-version, '7')
         run: npm install rxjs@^6
 
-      # node 8.x supports jest 25.x and ts-jest support typescript 3.x
-      - name: Install jest 25
-        if: startsWith(matrix.node-version, '8')
-        run: npm install jest@^25 ts-jest@^25 @types/jest@^25 typescript@^3 @types/node@^17 @types/babel__traverse@7.0.4
-
       # node 10.x supports jest 27.x but it doesn't work when installed this way
       - name: Install jest 26
         if: startsWith(matrix.node-version, '10')
@@ -90,6 +85,10 @@ jobs:
           startsWith(matrix.node-version, '10') ||
           startsWith(matrix.node-version, '12')
         run: npm install rimraf@^3
+
+      - name: Lint
+        if: startsWith(matrix.node-version, '18')
+        run: npm run lint
 
       - name: Test
         run: npm test

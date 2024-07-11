@@ -16,7 +16,7 @@
 
 <p align="center">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/gremo/nest-winston">
-  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/gremo/nest-winston/test.yaml">
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/gremo/nest-winston/ci.yaml">
   <a href="https://github.com/gremo/nest-winston/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/gremo/nest-winston.svg"></a>
   <a href="https://github.com/gremo/nest-winston/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/gremo/nest-winston"></a>
 </p>
