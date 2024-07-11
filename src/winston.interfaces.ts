@@ -14,6 +14,7 @@ export type NestLikeConsoleFormatOptions = {
   colors?: boolean;
   prettyPrint?: boolean;
   processId?: boolean;
+  appName?: boolean;
 };
 
 export interface WinstonModuleOptionsFactory {
