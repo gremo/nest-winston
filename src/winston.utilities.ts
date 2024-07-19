@@ -21,16 +21,21 @@ const nestLikeColorScheme: Record<string, (text: string) => string> = {
   verbose: clc.cyanBright,
 };
 
+const defaultOptions: NestLikeConsoleFormatOptions = {
+  colors: !process.env.NO_COLOR,
+  prettyPrint: true,
+  processId: true,
+  appName: true,
+};
+
 const nestLikeConsoleFormat = (
   appName = 'NestWinston',
-  options: NestLikeConsoleFormatOptions = {
-    colors: !process.env.NO_COLOR,
-    prettyPrint: false,
-    processId: true,
-    appName: true,
-  },
-): Format =>
-  format.printf(({ context, level, timestamp, message, ms, ...meta }) => {
+  options: NestLikeConsoleFormatOptions = {},
+): Format => {
+  // Merge default options with user-provided options
+  const formatOptions: NestLikeConsoleFormatOptions = { ...defaultOptions, ...options };
+
+  return format.printf(({ context, level, timestamp, message, ms, ...meta }) => {
     if ('info' === level) {
       level = 'log';
     }
@@ -48,17 +53,17 @@ const nestLikeConsoleFormat = (
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    const color = options.colors && nestLikeColorScheme[level] || ((text: string): string => text);
-    const yellow = options.colors ? clc.yellow : ((text: string): string => text);
+    const color = formatOptions.colors && nestLikeColorScheme[level] || ((text: string): string => text);
+    const yellow = formatOptions.colors ? clc.yellow : ((text: string): string => text);
 
     const stringifiedMeta = safeStringify(meta);
-    const formattedMeta = options.prettyPrint
-      ? inspect(JSON.parse(stringifiedMeta), { colors: options.colors, depth: null })
+    const formattedMeta = formatOptions.prettyPrint
+      ? inspect(JSON.parse(stringifiedMeta), { colors: formatOptions.colors, depth: null })
       : stringifiedMeta;
 
     return (
-      (options.appName ? color(`[${appName}]`) + ' ' :  '') +
-      (options.processId ? color(String(process.pid)).padEnd(6) + ' ' : '') +
+      (formatOptions.appName ? color(`[${appName}]`) + ' ' :  '') +
+      (formatOptions.processId ? color(String(process.pid)).padEnd(6) + ' ' : '') +
       ('undefined' !== typeof timestamp ? `${timestamp} ` : '') +
       `${color(level.toUpperCase().padStart(7))} ` +
       ('undefined' !== typeof context
@@ -69,6 +74,7 @@ const nestLikeConsoleFormat = (
       ('undefined' !== typeof ms ? ` ${yellow(ms)}` : '')
     );
   });
+};
 
 export const utilities = {
   format: {
