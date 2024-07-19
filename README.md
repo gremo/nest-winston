@@ -253,6 +253,8 @@ The module also provides a custom Nest-like special formatter for console transp
 - `processId`: includes the Node Process ID (`process.pid`) in the output, defaults to `true`
 - `appName`: includes the provided application name in the output, defaults to `true`
 
+Note: When providing partial options, unspecified options will retain their default values.
+
 ```typescript
 import { Module } from '@nestjs/common';
 import { utilities as nestWinstonModuleUtilities, WinstonModule } from 'nest-winston';
