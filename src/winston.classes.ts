@@ -100,4 +100,25 @@ export class WinstonLogger implements LoggerService {
   public getWinstonLogger(): Logger {
     return this.logger;
   }
+
+  public setLogLevels(names: string[]) {
+    const namesWithLevels: [string, number][] = names
+      .map<[string, number]>(name => {
+      const level = this.logger.levels[name] || undefined;
+
+      // Guard against invalid log levels
+      if (level === undefined) {
+        throw new Error(
+          `Invalid log level ${level}, must be one of ${Object.keys(
+            this.logger.levels,
+          )}`,
+        );
+      }
+
+      return [name, level];
+    })
+      .sort((a, b) => b[1] - a[1]); // sort by level, highest first
+
+    this.logger.level = namesWithLevels[0][0];
+  }
 }
