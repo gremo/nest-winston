@@ -11,6 +11,10 @@ export class WinstonLogger implements LoggerService {
     this.context = context;
   }
 
+  public getContext() {
+    return this.context;
+  }
+
   public log(message: any, context?: string): any {
     context = context || this.context;
 
