@@ -36,10 +36,10 @@ export class WinstonLogger implements LoggerService {
     if (!!message && 'object' === typeof message) {
       const { message: msg, ...meta } = message;
 
-      return this.logger.error({ level: 'fatal', message: msg, context, stack: [trace], ...meta });
+      return this.logger.log({ level: 'fatal', message: msg, context, stack: [trace], ...meta });
     }
 
-    return this.logger.error({ level: 'fatal', message, context, stack: [trace] });
+    return this.logger.log({ level: 'fatal', message, context, stack: [trace] });
   }
 
   public error(message: any, trace?: string, context?: string): any {
