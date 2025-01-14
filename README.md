@@ -9,9 +9,9 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/nest-winston"><img alt="NPM version" src="https://img.shields.io/npm/v/nest-winston.svg"></a>
   <a href="https://www.npmjs.com/package/nest-winston"><img alt="NPM downloads" src="https://img.shields.io/npm/dw/nest-winston.svg"></a>
-  <a href="https://github.com/gremo/nest-winston/pulse"><img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/gremo/nest-winston"></a>
-  <a href="https://github.com/gremo/nest-winston/graphs/contributors" alt="Contributors"><img src="https://img.shields.io/github/contributors/gremo/nest-winston"></a>
-  <a href="https://paypal.me/marcopolichetti" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"></a>
+  <a href="https://github.com/gremo/nest-winston/pulse"><img src="https://img.shields.io/github/commit-activity/m/gremo/nest-winston" alt="GitHub commit activity"></a>
+  <a href="https://github.com/gremo/nest-winston/graphs/contributors"><img src="https://img.shields.io/github/contributors/gremo/nest-winston" alt="Contributors"></a>
+  <a href="https://paypal.me/marcopolichetti" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate"></a>
 </p>
 
 <p align="center">
@@ -240,7 +240,7 @@ Here is a summary of the three techniques explained above:
 
 | Injection token                | Typing                                | Module config | Usage                                                                  |
 | :----------------------------- | :------------------------------------ | :------------ | :--------------------------------------------------------------------- |
-| `WINSTON_MODULE_PROVIDER`      | `Logger` from `winston`               | Yes           | + Your application/message logging
+| `WINSTON_MODULE_PROVIDER`      | `Logger` from `winston`               | Yes           | + Your application/message logging |
 | `WINSTON_MODULE_NEST_PROVIDER` | `LoggerService` from `@nestjs/common` | Yes           | + Your application/message logging <br> + Nest logger |
 | *none*                         | `Logger` from `@nestjs/common`        | No            | + Your application/message logging <br> + Nest logger <br> + Application bootstrapping |
 
