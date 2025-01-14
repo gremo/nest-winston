@@ -29,14 +29,17 @@
           "dist/": true,
           "node_modules/": true
         },
-        "testExplorer.useNativeTesting": true
+        "jest.enable": true,
+        "jest.jestCommandLine": "npm test --",
+        "jest.runMode": "on-demand",
+        "testing.openTesting": "neverOpen"
       },
       "extensions": [
         "DavidAnson.vscode-markdownlint",
         "dbaeumer.vscode-eslint",
         "donjayamanne.githistory",
         "editorconfig.editorconfig",
-        "kavod-io.vscode-jest-test-adapter"
+        "orta.vscode-jest"
       ]
     }
   }
