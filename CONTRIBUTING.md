@@ -18,7 +18,3 @@ In order to contribute to this project, follow a few easy steps:
 3. Create a branch `my-awesome-feature` and commit to it
 4. Run `npm run lint`, `npm run test` and `npm run build` and verify that they complete without errors
 5. Push `my-awesome-feature` branch to GitHub and open a [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)
-
-<p align="center">
-  <a href="https://paypal.me/marcopolichetti" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-</p>

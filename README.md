@@ -11,7 +11,6 @@
   <a href="https://www.npmjs.com/package/nest-winston"><img alt="NPM downloads" src="https://img.shields.io/npm/dw/nest-winston.svg"></a>
   <a href="https://github.com/gremo/nest-winston/pulse"><img src="https://img.shields.io/github/commit-activity/m/gremo/nest-winston" alt="GitHub commit activity"></a>
   <a href="https://github.com/gremo/nest-winston/graphs/contributors"><img src="https://img.shields.io/github/contributors/gremo/nest-winston" alt="Contributors"></a>
-  <a href="https://paypal.me/marcopolichetti" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate"></a>
 </p>
 
 <p align="center">
