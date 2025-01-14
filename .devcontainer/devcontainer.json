@@ -20,8 +20,8 @@
         "editor.formatOnSave": true,
         "editor.linkedEditing": false,
         "editor.codeActionsOnSave": {
-          "source.fixAll.eslint": true,
-          "source.fixAll.markdownlint": true
+          "source.fixAll.eslint": "always",
+          "source.fixAll.markdownlint": "always"
         },
         "eslint.enable": true,
         "eslint.format.enable": true,
