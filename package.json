@@ -24,10 +24,10 @@
     "fast-safe-stringify": "^2.1.1"
   },
   "devDependencies": {
-    "@nestjs/common": "11.0.4",
-    "@nestjs/core": "11.0.4",
-    "@nestjs/platform-express": "11.0.4",
-    "@nestjs/testing": "11.0.4",
+    "@nestjs/common": "11.0.6",
+    "@nestjs/core": "11.0.6",
+    "@nestjs/platform-express": "11.0.6",
+    "@nestjs/testing": "11.0.6",
     "@types/jest": "29.5.14",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
