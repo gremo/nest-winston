@@ -118,7 +118,13 @@ describe('WinstonLogger', () => {
 
       expect(mockLogger.error).toHaveBeenCalledWith(
         'error message',
-        { context, stack: [undefined], error: errorObj, additionalData: 'test' }
+        {
+          context,
+          stack: [errorObj.stack],
+          error: 'nested error',
+          name: 'Error',
+          additionalData: 'test'
+        }
       );
     });
   });
@@ -277,8 +283,9 @@ describe('WinstonLogger', () => {
         level: 'fatal',
         message: 'fatal message',
         context,
-        stack: [undefined],
-        error: errorObj,
+        stack: [errorObj.stack],
+        error: 'nested error',
+        name: 'Error',
         additionalData: 'test'
       });
     });
