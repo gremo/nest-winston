@@ -34,9 +34,11 @@ export class WinstonLogger implements LoggerService {
     }
 
     if (!!message && 'object' === typeof message) {
-      const { message: msg, ...meta } = message;
+      const { message: msg, error, ...meta } = message;
 
-      return this.logger.log({ level: 'fatal', message: msg, context, stack: [trace], ...meta });
+      const { message: errorMessage = undefined, name = undefined, stack = undefined, ...errorMeta } = error instanceof Error ? error : {};
+
+      return this.logger.log({ level: 'fatal', message: msg, context, stack: [trace || stack], error: errorMessage, name, ...errorMeta, ...meta });
     }
 
     return this.logger.log({ level: 'fatal', message, context, stack: [trace] });
@@ -53,9 +55,11 @@ export class WinstonLogger implements LoggerService {
     }
 
     if(!!message && 'object' === typeof message) {
-      const { message: msg, ...meta } = message;
+      const { message: msg, error, ...meta } = message;
 
-      return this.logger.error(msg as string, { context, stack: [trace], ...meta });
+      const { message: errorMessage = undefined, name = undefined, stack = undefined, ...errorMeta } = error instanceof Error ? error : {};
+
+      return this.logger.error(msg as string, { context, stack: [trace || stack], error: errorMessage, name, ...errorMeta, ...meta });
     }
 
     return this.logger.error(message, { context, stack: [trace] });
