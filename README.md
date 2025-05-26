@@ -233,6 +233,46 @@ export class CatsController {
 }
 ```
 
+## Another way to replace the Nest logger (also for bootstrapping) without destroy keep injection
+
+When you want to maintain injection (for example, when you use `@nestjs/config` to read your own configuration file, you need to use the `forRootAsync#useFactory` feature), but if at this time you also want to replace the built-in Nest log, you can use the following method.
+
+First, configure your logger in `AppModule`:
+
+```ts
+@Module({
+  imports: [
+    ConfigModule.forRoot(),
+    WinstonModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        level: configService.get("level"),
+        // your options ...
+      })
+    })
+  ]
+})
+export class AppModule {}
+```
+
+And then change you `main.ts`:
+
+```ts
+async function bootstrap() {
+  const app = NestFactory.create(AppModule, {
+    // When enable, the logs will not show terminal directly call the `NestFactory.create` function, logs will be store in memory!
+    bufferLogs: true,
+  })
+  // And then, we can get logger using `WINSTON_MODULE_NEST_PROVIDER` token in the ioc container
+  const logger = app.get(WINSTON_MODULE_NEST_PROVIDER)
+  // and use it! all stored logs will be show in terminal by `app.useLogger` function!
+  app.useLogger(logger)
+  // ... other code
+}
+```
+
+In this way, you can have the best of both worlds. Enjoy!
+
 ## Injection and usage summary
 
 Here is a summary of the three techniques explained above:
