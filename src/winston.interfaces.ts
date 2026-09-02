@@ -1,6 +1,7 @@
+// DynamicModule (unlike ModuleMetadata) is exported from the package root by every supported nestjs version, and
+// deep imports such as "@nestjs/common/interfaces" don't resolve with the "exports" map of nestjs 12.x
+import { DynamicModule, Type } from '@nestjs/common';
 import { Logger, LoggerOptions } from 'winston';
-import { ModuleMetadata } from '@nestjs/common/interfaces';
-import { Type } from '@nestjs/common';
 
 export type WinstonModuleOptions = LoggerOptions & {
   /**
@@ -21,7 +22,7 @@ export interface WinstonModuleOptionsFactory {
   createWinstonModuleOptions(): Promise<WinstonModuleOptions> | WinstonModuleOptions;
 }
 
-export interface WinstonModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
+export interface WinstonModuleAsyncOptions extends Pick<DynamicModule, 'imports'> {
   useFactory?: (
     ...args: any[]
   ) => Promise<WinstonModuleOptions> | WinstonModuleOptions;
