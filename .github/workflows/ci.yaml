@@ -14,25 +14,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: ['16', '18', '19', '20', '21', '22']
+        # node versions supported by nestjs 11.x/12.x (@nestjs/core engines: >= 20)
+        node-version: ['20', '22', '24']
         nest-version: ['5', '6', '7', '8', '9', '10', '11']
         include:
-          - { node-version: '10', nest-version: '5' }
-          - { node-version: '10', nest-version: '6' }
-          - { node-version: '10', nest-version: '7' }
-          - { node-version: '10', nest-version: '8' }
-          - { node-version: '12', nest-version: '5' }
-          - { node-version: '12', nest-version: '6' }
-          - { node-version: '12', nest-version: '7' }
-          - { node-version: '12', nest-version: '8' }
-          - { node-version: '12', nest-version: '9' }
-          - { node-version: '14', nest-version: '5' }
-          - { node-version: '14', nest-version: '6' }
-          - { node-version: '14', nest-version: '7' }
-          - { node-version: '14', nest-version: '8' }
-          - { node-version: '14', nest-version: '9' }
-          - { node-version: '24', nest-version: '10' }
-          - { node-version: '24', nest-version: '11' }
           # nestjs 12.x (package.json) is ESM-only: jest can require() it natively only on node 24.9+
           - { node-version: '24', nest-version: '' }
 
@@ -47,11 +32,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # unrs-resolver (jest 30.x dependency) postinstall fails on node below 14.x, jest is downgraded below anyway
       - name: Install dependencies
         run: |
           npm config set legacy-peer-deps true
-          npm install ${{ (startsWith(matrix.node-version, '10') || startsWith(matrix.node-version, '12')) && '--ignore-scripts' || '' }}
+          npm install
 
       - name: Install nestjs
         if: matrix.nest-version
@@ -75,34 +59,8 @@ jobs:
           startsWith(matrix.nest-version, '7')
         run: npm install rxjs@^6
 
-      # newer @types/node releases require typescript 5.x: keep the locked version when reinstalling jest
-      # node 10.x supports jest 27.x but it doesn't work when installed this way
-      - name: Install jest 26
-        if: startsWith(matrix.node-version, '10')
-        run: npm install jest@^26 ts-jest@^26 @types/jest@^26 @types/node@$(node -p "require('@types/node/package.json').version")
-
-      # jest 29.x droppped support for node 12.x
-      - name: Install jest 28
-        if: startsWith(matrix.node-version, '12')
-        run: npm install jest@^28 ts-jest@^28 @types/jest@^28 @types/node@$(node -p "require('@types/node/package.json').version")
-
-      # jest 30.x dropped support for node below 18.x
-      - name: Install jest 29
-        if: >-
-          startsWith(matrix.node-version, '14') ||
-          startsWith(matrix.node-version, '16')
-        run: npm install jest@^29 ts-jest@^29 @types/jest@^29 @types/node@$(node -p "require('@types/node/package.json').version")
-
-      # rimraf 4.x does not support node below 14.x
-      - name: Install rimraf
-        if: >-
-          startsWith(matrix.node-version, '8') ||
-          startsWith(matrix.node-version, '10') ||
-          startsWith(matrix.node-version, '12')
-        run: npm install rimraf@^3
-
       - name: Lint
-        if: startsWith(matrix.node-version, '18')
+        if: startsWith(matrix.node-version, '24')
         run: npm run lint
 
       - name: Test
