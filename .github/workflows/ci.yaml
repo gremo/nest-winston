@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         node-version: ['16', '18', '19', '20', '21', '22']
-        nest-version: ['5', '6', '7', '8', '9', '']
+        nest-version: ['5', '6', '7', '8', '9', '10', '11']
         include:
           - { node-version: '10', nest-version: '5' }
           - { node-version: '10', nest-version: '6' }
@@ -31,6 +31,10 @@ jobs:
           - { node-version: '14', nest-version: '7' }
           - { node-version: '14', nest-version: '8' }
           - { node-version: '14', nest-version: '9' }
+          - { node-version: '24', nest-version: '10' }
+          - { node-version: '24', nest-version: '11' }
+          # nestjs 12.x (package.json) is ESM-only: jest can require() it natively only on node 24.9+
+          - { node-version: '24', nest-version: '' }
 
     steps:
       - name: Checkout
@@ -57,7 +61,9 @@ jobs:
           startsWith(matrix.nest-version, '6') ||
           startsWith(matrix.nest-version, '7') ||
           startsWith(matrix.nest-version, '8') ||
-          startsWith(matrix.nest-version, '9')
+          startsWith(matrix.nest-version, '9') ||
+          startsWith(matrix.nest-version, '10') ||
+          startsWith(matrix.nest-version, '11')
         run: npm install @nestjs/platform-express@^${{ matrix.nest-version }}
 
       # nestjs 5.x-7.x supports rxjs 6.x
@@ -77,6 +83,13 @@ jobs:
       - name: Install jest 28
         if: startsWith(matrix.node-version, '12')
         run: npm install jest@^28 ts-jest@^28 @types/jest@^28
+
+      # jest 30.x dropped support for node below 18.x
+      - name: Install jest 29
+        if: >-
+          startsWith(matrix.node-version, '14') ||
+          startsWith(matrix.node-version, '16')
+        run: npm install jest@^29 ts-jest@^29 @types/jest@^29
 
       # rimraf 4.x does not support node below 14.x
       - name: Install rimraf
