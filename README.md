@@ -48,6 +48,8 @@
 npm install --save nest-winston winston
 ```
 
+Requirements: NestJS 11 or 12 and Node.js 20 or later (matching NestJS' own `engines`). For older NestJS versions (5 to 10) use `nest-winston@1.x`.
+
 Having troubles configuring `nest-winston`? Clone this repository and `cd` in a sample:
 
 ```bash
@@ -331,6 +333,10 @@ export class AppController {
 ## Upgrade
 
 Some notes about upgrading to a major or minor version.
+
+### 1.x to 2.0
+
+- Dropped support for NestJS 5 to 10 and Node.js older than 20. The `@nestjs/common` peer dependency is now `^11.0.0 || ^12.0.0` and `engines.node` is `>= 20`, matching NestJS' own requirements. Stay on `nest-winston@1.x` if you can't upgrade.
 
 ### 1.6.x to 1.7
 

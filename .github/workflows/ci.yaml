@@ -15,11 +15,12 @@ jobs:
       fail-fast: false
       matrix:
         # node versions supported by nestjs 11.x/12.x (@nestjs/core engines: >= 20)
-        node-version: ['20', '22', '24']
-        nest-version: ['5', '6', '7', '8', '9', '10', '11']
+        node-version: ['20', '22', '24', '26']
+        nest-version: ['11']
         include:
           # nestjs 12.x (package.json) is ESM-only: jest can require() it natively only on node 24.9+
           - { node-version: '24', nest-version: '' }
+          - { node-version: '26', nest-version: '' }
 
     steps:
       - name: Checkout
@@ -39,28 +40,10 @@ jobs:
 
       - name: Install nestjs
         if: matrix.nest-version
-        run: npm install @nestjs/common@^${{ matrix.nest-version }} @nestjs/core@^${{ matrix.nest-version }} @nestjs/testing@^${{ matrix.nest-version }}
-
-      - name: Install platform-express
-        if: >-
-          startsWith(matrix.nest-version, '6') ||
-          startsWith(matrix.nest-version, '7') ||
-          startsWith(matrix.nest-version, '8') ||
-          startsWith(matrix.nest-version, '9') ||
-          startsWith(matrix.nest-version, '10') ||
-          startsWith(matrix.nest-version, '11')
-        run: npm install @nestjs/platform-express@^${{ matrix.nest-version }}
-
-      # nestjs 5.x-7.x supports rxjs 6.x
-      - name: Install rxjs
-        if: >-
-          startsWith(matrix.nest-version, '5') ||
-          startsWith(matrix.nest-version, '6') ||
-          startsWith(matrix.nest-version, '7')
-        run: npm install rxjs@^6
+        run: npm install @nestjs/common@^${{ matrix.nest-version }} @nestjs/core@^${{ matrix.nest-version }} @nestjs/platform-express@^${{ matrix.nest-version }} @nestjs/testing@^${{ matrix.nest-version }}
 
       - name: Lint
-        if: startsWith(matrix.node-version, '24')
+        if: startsWith(matrix.node-version, '26')
         run: npm run lint
 
       - name: Test
