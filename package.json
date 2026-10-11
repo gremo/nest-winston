@@ -43,7 +43,7 @@
     "ts-jest": "29.4.14",
     "ts-node": "10.9.2",
     "typescript": "4.9.5",
-    "winston": "3.16.0"
+    "winston": "3.19.0"
   },
   "peerDependencies": {
     "@nestjs/common": "^11.0.0 || ^12.0.0",
